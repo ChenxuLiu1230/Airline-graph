@@ -20,7 +20,7 @@ If anyone is uncapable of doing his task without proper explanation and is not a
 If there are any conflicts within the team, a group vote will be conducted first, and the team will choose the idea with more votes. To break the tie, the team will simply toss a coin to determine. If the conflict is related to techniques, the team will look for support from TA, Professor or Google to make a proper decision.
 
 ### Signature
-Chenxu Liu, chenxul2
+Chenxu Liu (chenxul2) agree to the terms of this contract.
 
 
 
