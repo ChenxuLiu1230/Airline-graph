@@ -21,6 +21,7 @@ If there are any conflicts within the team, a group vote will be conducted first
 
 ### Signature
 Chenxu Liu (chenxul2) agree to the terms of this contract.
+Shuchen Wu (sw18) agree to the terms of this contract.
 
 
 
