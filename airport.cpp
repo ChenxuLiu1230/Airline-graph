@@ -1,25 +1,29 @@
-#include "vertex.h"
+#include "airport.h"
 #include <string>
 
 /**
- * @brief default constructor for vertex (empty node)
+ * @brief default constructor for airport (empty node)
 **/
 
-vertex::vertex() {
+Airport::Airport() {
     airportID = 0;
     name = "";
     IATA = "";
     ICAO = "";
     latitude = 0.0;
     longtitude = 0.0;
+
+    //newly added
+    city = "";
+    country = "";
     
 }
 
 /**
- * @brief custom constructor for vertex with the given information of airport.
+ * @brief custom constructor for airport with the given information of airport.
 **/
 
-vertex::vertex(int airportID, string name, string IATA, string ICAO, double latitude, double longtitude) 
+Airport::Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longtitude) 
     : airportID(airportID), name(name), IATA(IATA), ICAO(ICAO), latitude(latitude), longtitude(longtitude)
 {
 }
@@ -28,7 +32,7 @@ vertex::vertex(int airportID, string name, string IATA, string ICAO, double lati
  * @brief Overload == to compare whether two airports are the same.
 **/
 
-bool vertex::operator==(const vertex & other) {
+bool Airport::operator==(const Airport & other) {
     // the airportID uniquely represents an airport.
     if(this->airportID == other.airportID){
         return true;
