@@ -2,7 +2,7 @@
 EXENAME = finalproj
 
 # Object Types
-OBJS = readFromFile.o main.o
+OBJS = readFromFile.o main.o graph.o vertex.o
 
 # Compilation Flags
 CXX = clang++

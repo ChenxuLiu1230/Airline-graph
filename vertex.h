@@ -17,7 +17,7 @@ class vertex {
         string ICAO;
         double latitude;
         double longtitude;
-        bool vertex::operator==(const vertex & other);
+        bool operator==(const vertex & other);
     
 
 };
