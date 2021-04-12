@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 /** 
@@ -25,14 +26,14 @@ class Airport {
         void set_city(string city_);
         void set_country(string country_);
 
-        int get_id();
-        double get_lat();
-        double get_lon();
-        string get_name();
-        string get_IATA();
-        string get_ICAO();
-        string get_city();
-        string get_country();
+        int get_id() const;
+        double get_lat() const;
+        double get_lon() const;
+        string get_name() const;
+        string get_IATA() const;
+        string get_ICAO() const;
+        string get_city() const;
+        string get_country() const;
         
         void info();
         
@@ -47,6 +48,10 @@ class Airport {
         double longitude;
         string city;
         string country;
-    
+
+        // stores information about edges/routes
+        // the elements of the two vectors at the same index represent the same airport.
+        vector<Airport*> destinations; // stores a pointer to another airport which has some routes with the current airport.
+        vector<double> weights;        // stores the corresponding distance, or edge weights.
 
 };

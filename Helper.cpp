@@ -1,3 +1,4 @@
+#include "Helper.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -8,30 +9,14 @@
 #include "readFromFile.hpp"
 #include "country.h"
 #include "airport.h"
+#include <cmath>
 using namespace std;
 
-// int main(int argc, const char * argv[]) {
-// 	std::cout << "Filename: " << argv[1] << std::endl;
-	
-// 	// convert file to string representation
-// 	std::cout << "String Representation:" << std::endl;
-// 	std::cout << file_to_string(argv[1]) << std::endl;
-	
-// 	// convert file to vector representation
-// 	std::cout << "Vector Representation:" << std::endl;
-// 	std::vector<std::string> vectorRepr = file_to_vector(argv[1]);
-// 	for (auto word : vectorRepr) {
-// 		std::cout << word << std::endl;
-// 	}	
-// }
 
 
-//helper function to initialize Country List
-/*
-!!!!!!!!!!!!!!!
-complete function, ask in wechat group before modifying
-!!!!!!!!!!!!!!!
-*/
+
+
+
 vector <Country> make_country_list(){
 	ifstream fin("data/country.txt"); //open file
 	string line; 
@@ -61,7 +46,7 @@ vector <Country> make_country_list(){
 
 }
 
-//Test case for make_country_list()
+// Test case for make_country_list() 
 void test_country_list(vector <Country> l){
 	for (size_t i = 0; i<50; i++){
 		size_t temp = i+1;
@@ -168,34 +153,28 @@ vector <Airport> make_airport_list(){
 	return al;
 }
 
+// This implementation of havrrsine formula is referenced from https://www.movable-type.co.uk/scripts/latlong.html.
+double distance(Airport * first, Airport * second) {
+    double const PI = atan(1) * 4;   // 3.1415926...
+    double const RADIUS = 6371;     // radius of the earth, km.
+    double lat1 = first -> get_lat() * PI / 180;
+    double lon1 = first -> get_lon() * PI / 180;
+    double lat2 = second -> get_lat() * PI / 180;
+    double lon2 = second -> get_lon() * PI / 180;
+    double deltalat = (second -> get_lat() - first -> get_lat()) * PI / 180;
+    double deltalon = (second -> get_lon() - first -> get_lon()) * PI / 180;
+    double a = pow(sin(deltalat / 2), 2) + cos(lat1) * cos(lat2) * pow(sin(deltalon / 2), 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1-a));
+    return RADIUS * c;
+}
+
+
 //test case for make_airport_list()
 //instruction in is the input airport vector, 
 //n is the Unique ID of the airport, same as the line number in the txt file
 void test_airport_list(vector <Airport> in, int n){
 	in[n].info();	
 }
-
-
-
-int main()
-{	
-
-
-	//initialize Country, 261 countries in total
-	vector <Country> country_list = make_country_list();
-	//test case 
-	//test_country_list(country_list);
-
-	vector <Airport> airport_list = make_airport_list();
-	//test case
-	//instruction: second input is the index of the airport you want to check
-	test_airport_list(airport_list,1);
-
-	return 0;
-}
-
-
-
 
 //unused function that can increase stack size from 8MB to 16MB
 void increase_stack_size(){

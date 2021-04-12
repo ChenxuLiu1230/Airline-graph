@@ -4,7 +4,6 @@
 /**
  * @brief default constructor for airport (empty node)
 **/
-
 Airport::Airport() {
     airportID = 0;
     name = "";
@@ -12,17 +11,12 @@ Airport::Airport() {
     ICAO = "";
     latitude = 0.0;
     longitude = 0.0;
-
-    //newly added
-    city = "";
-    country = "";
-    
 }
 
 /**
- * @brief custom constructor for airport with the given information of airport.
+ * @brief : custom constructor for airport with the given information of airport.
+ * @param : airport, name, IATA, ICAO, latitude, longtitude.
 **/
-
 Airport::Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longitude) 
     : airportID(airportID), name(name), IATA(IATA), ICAO(ICAO), latitude(latitude), longitude(longitude)
 {
@@ -30,8 +24,8 @@ Airport::Airport(int airportID, string name, string IATA, string ICAO, double la
 
 /**
  * @brief Overload == to compare whether two airports are the same.
+ * @param : constant reference of another Airport.
 **/
-
 bool Airport::operator==(const Airport & other) {
     // the airportID uniquely represents an airport.
     if(this->airportID == other.airportID){
@@ -41,8 +35,9 @@ bool Airport::operator==(const Airport & other) {
     }
 }
 
-//newly added
-//set private variables
+/**
+ * @brief public set functions.
+**/
 void Airport::set_id(int id_){
     airportID = id_;
 }
@@ -67,17 +62,20 @@ void Airport::set_city(string city_){
 void Airport::set_country(string country_){
     country = country_;
 }
-//return private variables
 
-int Airport::get_id() {return airportID;}
-double Airport::get_lat() {return latitude;}
-double Airport::get_lon() {return longitude;}
-string Airport::get_name() {return name;}
-string Airport::get_IATA() {return IATA;}
-string Airport::get_ICAO() {return ICAO;}
-string Airport::get_city() {return city;}
-string Airport::get_country() {return country;}
+/**
+ * @brief public get functions.
+**/
+int Airport::get_id() const {return airportID;}
+double Airport::get_lat() const {return latitude;}
+double Airport::get_lon() const {return longitude;}
+string Airport::get_name() const {return name;}
+string Airport::get_IATA() const {return IATA;}
+string Airport::get_ICAO() const {return ICAO;}
+string Airport::get_city() const {return city;}
+string Airport::get_country() const {return country;}
 
+// could replace this by overloading the "<<" operator of the Airport class.
 void Airport::info(){
     cout<< " ID is "<< airportID<<", "; 
 	cout<< " name is "<<name<<", ";
