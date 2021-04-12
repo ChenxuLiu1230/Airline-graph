@@ -1,5 +1,7 @@
 #include "airport.h"
 #include <string>
+#include <vector>
+using namespace std;
 
 /**
  * @brief default constructor for airport (empty node)
@@ -12,6 +14,12 @@ Airport::Airport() {
     latitude = 0.0;
     longitude = 0.0;
     flag = false;
+    vector<Airport*> a; 
+    vector<Airport*> b; 
+    vector<double> c;
+    direct_destinations = a;
+    indirect_destinations = b;
+    weights = c;
 }
 
 /**
@@ -21,6 +29,13 @@ Airport::Airport() {
 Airport::Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longitude, bool flag) 
     : airportID(airportID), name(name), IATA(IATA), ICAO(ICAO), latitude(latitude), longitude(longitude), flag(flag)
 {
+
+    vector<Airport*> a; 
+    vector<Airport*> b; 
+    vector<double> c;
+    direct_destinations = a;
+    indirect_destinations = b;
+    weights = c;
 }
 
 /**
@@ -63,6 +78,9 @@ void Airport::set_city(string city_){
 void Airport::set_country(string country_){
     country = country_;
 }
+void Airport::set_dd(vector <Airport*> in) {direct_destinations = in; }
+void Airport::set_id(vector <Airport*> in) {indirect_destinations = in; }
+void Airport::set_weights(vector <double> in) {weights = in; }
 
 /**
  * @brief public get functions.
@@ -75,6 +93,9 @@ string Airport::get_IATA() const {return IATA;}
 string Airport::get_ICAO() const {return ICAO;}
 string Airport::get_city() const {return city;}
 string Airport::get_country() const {return country;}
+vector <Airport*> Airport::get_dd() const {return direct_destinations;}
+vector <Airport*> Airport::get_ind() const {return indirect_destinations;}
+vector <double> Airport::get_weights() const {return weights;}
 
 // could replace this by overloading the "<<" operator of the Airport class.
 void Airport::info(){    
@@ -91,4 +112,23 @@ void Airport::info(){
 	    cout<< " IATA is "<<IATA<<", ";
 	    cout<< " ICOA is "<<ICAO<<endl;
     }
+}
+
+void Airport::add_dd(Airport* in){
+
+    Airport * temp = in;
+    direct_destinations.push_back(temp);
+    
+}
+void Airport::add_ind(Airport* in){
+
+    Airport * temp = in;
+    indirect_destinations.push_back(temp);
+
+    
+}
+void Airport::add_weight(double in){
+
+    double temp = in;
+    weights.push_back(temp);
 }

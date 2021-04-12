@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdio>
 #include <sys/resource.h>
+#include <algorithm>
 #include "readFromFile.hpp"
 #include "country.h"
 #include "airport.h"
@@ -162,11 +163,11 @@ vector <Airport> make_airport_list(){
 	return al;
 }
 
-
 //test case for make_airport_list()
 //instruction in is the input airport vector, 
 //n and m are the Unique ID of the airport, same as the line number in the txt file
 void test_airport_list(vector <Airport> in, int n, int m){
+	cout<<"\nstart of test_airport_list"<<endl;
 	cout<<"\nfirst input airport"<<endl;
 	in[n].info();
 
@@ -181,22 +182,129 @@ void test_airport_list(vector <Airport> in, int n, int m){
 	cout<<"\ncapacity of airport_list is "<<in.capacity()<<"\n"<<endl;
 }
 
+void read_routes(vector <Airport> &in){
+	ifstream fin("data/routes.txt"); //open file
+	string line; 
+	int indirect_num = 0;
+	//cout<<"check1"<<endl;
+	while (getline(fin, line))   //read entire line, 
+	{
+		//cout<<"check2"<<endl;
+		string temp = line; //current line of text read in .txt file
+		string delimiter =","; //text is seperated by " set delimiter
+		string str;
+		size_t pos = 0;
+		int counter= 0;
+		int source_id, dest_id;
+		int stop;
+		//find full name of the country in current line
+		
+		while ((pos = temp.find(delimiter)) != string::npos) {
+    			counter++;
+				if( counter == 4 ){
+					str = temp.substr(0,pos);
+					stringstream s1(str);
+					s1>>source_id;
+					temp.erase(0, pos + delimiter.length());
+				}
+				else if( counter == 6 ){
+					str = temp.substr(0,pos);
+					stringstream s2(str);
+					s2>>dest_id;
+					temp.erase(0, pos + delimiter.length());
+				}
+				else if( counter == 8){
+					str = temp.substr(0,pos);
+					stringstream s3(str);
+					s3>>stop;
+					temp.erase(0, pos + delimiter.length());
+				}
+				else{
+					temp.erase(0, pos + delimiter.length());
+				}							
+		}		
+		if(stop == 0){
+			
+				in[source_id].add_dd(&in[dest_id]);			
+				double dis;
+				Airport * s = &in[source_id];
+				Airport * d = &in[dest_id];
+				dis = distance(s,d);
+				in[source_id].add_weight(dis);
+			
+		}
+		else if(stop > 0){
+			indirect_num++;
+			if ( !check_overlap(in,source_id,dest_id) ) cout<<"indrect overlap"<<endl;
+			else in[source_id].add_ind(&in[dest_id]);	
+		}
+
+	}
+	cout<<"\nnumber of routes with stop"<<indirect_num<<endl;
+
+}
+
+void test_read_routes(vector <Airport> in, size_t n){
+	cout<<"\nstart of test_read_routs"<<endl;
+	vector <Airport*> temp;	
+	temp = in[n].get_dd();
+	cout<<in[n].get_name()<<endl;
+	cout<<"\nsize of current list is: "<<temp.size()<<"\nsize of current weights is: "<<in[1].get_weights().size()<<endl;
+	cout<<"\n";
+	cout<<"\ndestination list:"<<endl;
+	for(size_t i=0; i<temp.size(); i++){
+		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id()<<endl;
+	}
+	cout<<"\n";
+	
+}
+
 // This implementation of havrrsine formula is referenced from https://www.movable-type.co.uk/scripts/latlong.html.
 double distance(Airport * first, Airport * second) {
     double const PI = atan(1) * 4;   // 3.1415926...
     double const RADIUS = 6371;     // radius of the earth, km.
     double lat1 = first -> get_lat() * PI / 180;
-    double lon1 = first -> get_lon() * PI / 180;
+    double lon1 = first -> get_lon();
     double lat2 = second -> get_lat() * PI / 180;
-    double lon2 = second -> get_lon() * PI / 180;
+    double lon2 = second -> get_lon();
     double deltalat = (second -> get_lat() - first -> get_lat()) * PI / 180;
-    double deltalon = (second -> get_lon() - first -> get_lon()) * PI / 180;
+    double deltalon = (lon2-lon1) * PI / 180;
     double a = pow(sin(deltalat / 2), 2) + cos(lat1) * cos(lat2) * pow(sin(deltalon / 2), 2);
     double c = 2 * atan2(sqrt(a), sqrt(1-a));
     return RADIUS * c;
 }
 
+bool check_overlap(vector <Airport> in, int a, int b){
 
+	vector <Airport*> temp = in[a].get_dd();
+	for(size_t i = 0; i<temp.size(); i++){
+		if(temp[i]->get_id() == b) return false;
+	}
+	return true;
+}
+
+string check_overlap_2(vector <Airport> in, size_t n){
+	vector <Airport*> temp1 = in[n].get_dd();
+	int a,b;
+	for(size_t i = 0; i<temp1.size(); i++){
+		a = temp1[i]->get_id();
+		for(size_t j = i+1; j<temp1.size(); j++){
+			b = temp1[j]->get_id();
+			if(a==b) return "there are overlap routes";
+		}
+	}
+	return "all distince routes";
+}
+
+int getIndex(vector<int> v, int K)
+{
+
+    for (size_t i = 0; i < v.size(); i++){
+		if (v[i] == K) return (int)i;
+	}
+	cout<<"\n can't find such key "<<K<< " in the vector" <<endl;
+ 	return -1;    
+}
 
 
 //unused function that can increase stack size from 8MB to 16MB

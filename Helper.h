@@ -10,10 +10,13 @@
 
 
 /**
- * @brief helper function to initialize Country List 
+ * @brief helper function to initialize Country List
 **/
 vector <Country> make_country_list();
 
+/**
+ * @brief test function that verify make_country_list(), can be modified freely
+**/ 
 void test_country_list(vector <Country> l);
 
 /**
@@ -21,7 +24,14 @@ void test_country_list(vector <Country> l);
 **/ 
 vector <Airport> make_airport_list();
 
+/**
+ * @brief test function that verify make_airport_list(), cna be modified freely
+**/ 
 void test_airport_list(vector <Airport> in, int n);
+
+void read_routes(vector <Airport> &in);
+
+void test_read_routes(vector <Airport> in, size_t n);
 
 /**
  * @brief haversine formula for computing distance between two locations 
@@ -29,6 +39,22 @@ void test_airport_list(vector <Airport> in, int n);
 **/ 
 double distance(Airport * first, Airport * second);
 
+/**
+ * @brief check if the second id has been included in first id's destination
+ * return ture if there is no overlap, return false if there is overlap
+**/ 
+bool check_overlap(vector <Airport> in, int a, int b);
+
+string check_overlap_2(vector <Airport> in);
+
+/**
+ * @brief function that find element's index in vector
+**/ 
+int getIndex(vector<int> v, int K);
+
+/**
+ * @brief function that can increase stack size if needed
+**/ 
 void increase_stack_size();
 
 #endif

@@ -25,6 +25,9 @@ class Airport {
         void set_lon(double lon);
         void set_city(string city_);
         void set_country(string country_);
+        void set_dd(vector <Airport*> in);
+        void set_id(vector <Airport*> in);
+        void set_weights(vector <double> in);
 
         int get_id() const;
         double get_lat() const;
@@ -34,14 +37,18 @@ class Airport {
         string get_ICAO() const;
         string get_city() const;
         string get_country() const;
+        vector <Airport*> get_dd() const;
+        vector <Airport*> get_ind() const;
+        vector <double> get_weights() const;
         
-        void info();
-        
-        //newly added
-    private:
-        //check exsistence
-        bool flag;
+        void info();//print information of current airport
+        void add_dd(Airport* in);
+        void add_ind(Airport* in);
+        void add_weight(double in);
 
+    private:
+      
+        
         int airportID;
         string name;
         string IATA;
@@ -50,10 +57,12 @@ class Airport {
         double longitude;
         string city;
         string country;
+        bool flag;  //check exsistence
 
         // stores information about edges/routes
         // the elements of the two vectors at the same index represent the same airport.
-        vector<Airport*> destinations; // stores a pointer to another airport which has some routes with the current airport.
+        vector<Airport*> direct_destinations; // stores a pointer to another airport which has some routes with the current airport.
+        vector<Airport*> indirect_destinations; //stores pointrer to another airport that needs to stop
         vector<double> weights;        // stores the corresponding distance, or edge weights.
 
 };
