@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "Airport.h"
-#include "Helper.h"
+#include "airport.h"
+//#include "Helper.cpp"
 using namespace std;
 class Graph {
     public:
@@ -11,7 +11,7 @@ class Graph {
 
     private:
         // this vector contains all the information of an airline graph
-        // the airport is stored at index (airportID - 1)
+        // the airport is stored at index (airportID)
         vector<Airport> airports; 
         
     

@@ -11,7 +11,7 @@ using namespace std;
 class Airport {
     public:
         Airport();
-        Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longitude);
+        Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longitude, bool flag);
 
         
         bool operator==(const Airport & other);
@@ -39,6 +39,8 @@ class Airport {
         
         //newly added
     private:
+        //check exsistence
+        bool flag;
 
         int airportID;
         string name;

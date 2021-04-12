@@ -6,19 +6,20 @@
 **/
 Airport::Airport() {
     airportID = 0;
-    name = "";
+    name = "This airport node is empty, no such airport is found in data base";
     IATA = "";
     ICAO = "";
     latitude = 0.0;
     longitude = 0.0;
+    flag = false;
 }
 
 /**
  * @brief : custom constructor for airport with the given information of airport.
  * @param : airport, name, IATA, ICAO, latitude, longtitude.
 **/
-Airport::Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longitude) 
-    : airportID(airportID), name(name), IATA(IATA), ICAO(ICAO), latitude(latitude), longitude(longitude)
+Airport::Airport(int airportID, string name, string IATA, string ICAO, double latitude, double longitude, bool flag) 
+    : airportID(airportID), name(name), IATA(IATA), ICAO(ICAO), latitude(latitude), longitude(longitude), flag(flag)
 {
 }
 
@@ -76,13 +77,18 @@ string Airport::get_city() const {return city;}
 string Airport::get_country() const {return country;}
 
 // could replace this by overloading the "<<" operator of the Airport class.
-void Airport::info(){
-    cout<< " ID is "<< airportID<<", "; 
-	cout<< " name is "<<name<<", ";
-	cout<< " city is "<<city<<", ";
-	cout<< " country is "<<country<<", ";
-	cout<< " latitude is "<<latitude<<", ";
-	cout<< " longitude is "<<longitude<<", ";
-	cout<< " IATA is "<<IATA<<", ";
-	cout<< " ICOA is "<<ICAO<<endl;
+void Airport::info(){    
+    if(!flag){
+        cout<<name<<endl;
+    }else{
+        cout<<airportID<<" th ariport info: "<<endl;
+        cout<< " ID is "<< airportID<<", "; 
+	    cout<< " name is "<<name<<", ";
+	    cout<< " city is "<<city<<", ";
+	    cout<< " country is "<<country<<", ";
+	    cout<< " latitude is "<<latitude<<", ";
+	    cout<< " longitude is "<<longitude<<", ";
+	    cout<< " IATA is "<<IATA<<", ";
+	    cout<< " ICOA is "<<ICAO<<endl;
+    }
 }

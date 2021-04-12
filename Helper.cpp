@@ -13,10 +13,6 @@
 using namespace std;
 
 
-
-
-
-
 vector <Country> make_country_list(){
 	ifstream fin("data/country.txt"); //open file
 	string line; 
@@ -67,19 +63,19 @@ vector <Airport> make_airport_list(){
 	string line; 
 	vector <Airport> al;
 	//make airports' index euqal to their ID
-	Airport head = Airport();
-	al.push_back(head);
+	Airport empty = Airport();
+	al.push_back(empty);
 	int id = 0;
 	while (getline(fin, line))   //read entire line, 
-	{
+	{		
 
 		string temp = line; //current line of text read in .txt file
-		string delimiter =" \" "; //string text is seperated by " set delimiter
+		string delimiter ="\""; //string text is seperated by " set delimiter
 		size_t pos = 0;
 		int counter= 0;
 		string str;
 		string delimiter1 = ","; //some int value are found through ","
-		
+				
 		//get airport ID
 		pos = temp.find(delimiter1);
 		str = temp.substr(0,pos);
@@ -89,9 +85,11 @@ vector <Airport> make_airport_list(){
 		//get rest of the information
 		string name, city, country, IATA, ICOA;
 		double lat,lon;
+
 		//find full name of the country in current line
 		while ((pos = temp.find(delimiter)) != string::npos) {
-    			counter++;
+    			
+				counter++;
 				if(counter%2 == 1) {//find first " and delete it
 					temp.erase(0,pos+delimiter.length());
 					continue; 
@@ -143,14 +141,44 @@ vector <Airport> make_airport_list(){
 						}
 					}
 				}
+				
 		}
 		//push airport into vector
-		Airport temp_airport = Airport(id, name, IATA, ICOA, lat, lon);
+		//some airports are not found in given data base, for example 
+		//there is no airport with ID 118 in the data base
+		//also need to create space for such node
+		int difference = id - (int)al.size();
+		if(difference > 0){
+			for(int i = difference; i>0; i--){
+				al.push_back(empty);
+			}
+		}
+		Airport temp_airport = Airport(id, name, IATA, ICOA, lat, lon, true);
 		temp_airport.set_city(city);
 		temp_airport.set_country(country);
 		al.push_back(temp_airport);
+		
 	}
 	return al;
+}
+
+
+//test case for make_airport_list()
+//instruction in is the input airport vector, 
+//n and m are the Unique ID of the airport, same as the line number in the txt file
+void test_airport_list(vector <Airport> in, int n, int m){
+	cout<<"\nfirst input airport"<<endl;
+	in[n].info();
+
+	cout<<"\nsecond input airport"<<endl;
+	in[m].info();
+
+	cout<<"\nlast ariport info: "<<endl;
+	in.back().info();	
+
+	cout<<"\nsize of airport_list is "<<in.size()<<endl;
+
+	cout<<"\ncapacity of airport_list is "<<in.capacity()<<"\n"<<endl;
 }
 
 // This implementation of havrrsine formula is referenced from https://www.movable-type.co.uk/scripts/latlong.html.
@@ -169,12 +197,7 @@ double distance(Airport * first, Airport * second) {
 }
 
 
-//test case for make_airport_list()
-//instruction in is the input airport vector, 
-//n is the Unique ID of the airport, same as the line number in the txt file
-void test_airport_list(vector <Airport> in, int n){
-	in[n].info();	
-}
+
 
 //unused function that can increase stack size from 8MB to 16MB
 void increase_stack_size(){
