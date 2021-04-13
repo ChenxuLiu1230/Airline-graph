@@ -240,7 +240,7 @@ void read_routes(vector <Airport> &in){
 		}
 
 	}
-	cout<<"\nnumber of routes with stop"<<indirect_num<<endl;
+	// cout<<"\nnumber of routes with stop"<<indirect_num<<endl;
 
 }
 

@@ -20,18 +20,25 @@ using namespace std;
 int main()
 {	
 
-	vector <Country> country_list = make_country_list();//initialize Country, 261 countries in total	
-	// test_country_list(country_list);//test case 
+	// vector <Country> country_list = make_country_list();//initialize Country, 261 countries in total	
+	// // test_country_list(country_list);//test case 
 
-	vector <Airport> airport_list = make_airport_list();	
-	test_airport_list(airport_list,1,5);//test case. instruction: second input is the index of the airport you want to check
+	// vector <Airport> airport_list = make_airport_list();	
+	// for (unsigned i = 0; i < airport_list.size(); i++) {
+	// 	airport_list[i].info();
+	// }
+	// test_airport_list(airport_list,1,5);//test case. instruction: second input is the index of the airport you want to check
 	
-	//cout<<"check0"<<endl;
-	read_routes(airport_list); 
-	test_read_routes(airport_list,1);
+	// //cout<<"check0"<<endl;
+	// read_routes(airport_list); 
+	// test_read_routes(airport_list,1);
 	
-	//check destination vector 
-	cout<<check_overlap_2(airport_list,1)<<"\n"<<endl;
+	// //check destination vector 
+	// cout<<check_overlap_2(airport_list,1)<<"\n"<<endl;
+
+	// test BFS
+	Graph testgraph;
+	testgraph.BFS(2);
 
 	return 0;
 }

@@ -62,7 +62,7 @@ class Airport {
         // stores information about edges/routes
         // the elements of the two vectors at the same index represent the same airport.
         vector<Airport*> direct_destinations; // stores a pointer to another airport which has some routes with the current airport.
-        vector<Airport*> indirect_destinations; //stores pointrer to another airport that needs to stop
+        vector<Airport*> indirect_destinations; //stores pointer to another airport that needs to stop
         vector<double> weights;        // stores the corresponding distance, or edge weights.
 
 };
