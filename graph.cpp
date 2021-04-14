@@ -191,7 +191,11 @@ void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) 
         }
       }
       container.pop();
-      fout << curr -> get_id() << left << setw(4) << setfill(' ');
+      if(curr->get_id() <10) fout <<"   " <<curr -> get_id();
+      else if(curr->get_id() <100) fout <<"  " <<curr -> get_id();
+      else if( curr->get_id() <1000) fout <<" " <<curr -> get_id();
+      else fout <<"" <<curr -> get_id();
+      
       fout << "->";
       count++;
       if (count == 25) {

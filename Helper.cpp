@@ -224,14 +224,15 @@ void read_routes(vector <Airport> &in){
 				}							
 		}		
 		if(stop == 0){
-			
-				in[source_id].add_dd(&in[dest_id]);			
-				double dis;
-				Airport * s = &in[source_id];
-				Airport * d = &in[dest_id];
-				dis = distance(s,d);
-				in[source_id].add_weight(dis);
-			
+			if(dest_id == 0){}
+			else{
+			in[source_id].add_dd(&in[dest_id]);			
+			double dis;
+			Airport * s = &in[source_id];
+			Airport * d = &in[dest_id];
+			dis = distance(s,d);
+			in[source_id].add_weight(dis);	
+			}		
 		}
 		else if(stop > 0){
 			indirect_num++;
