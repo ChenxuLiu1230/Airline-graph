@@ -93,6 +93,7 @@ string Airport::get_IATA() const {return IATA;}
 string Airport::get_ICAO() const {return ICAO;}
 string Airport::get_city() const {return city;}
 string Airport::get_country() const {return country;}
+bool Airport::valid() const {return flag;};
 vector <Airport*> Airport::get_dd() const {return direct_destinations;}
 vector <Airport*> Airport::get_ind() const {return indirect_destinations;}
 vector <double> Airport::get_weights() const {return weights;}

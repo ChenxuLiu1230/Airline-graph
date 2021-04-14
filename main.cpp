@@ -23,10 +23,21 @@ int main()
 	// vector <Country> country_list = make_country_list();//initialize Country, 261 countries in total	
 	// // test_country_list(country_list);//test case 
 
+	// // test travese the airports array
 	// vector <Airport> airport_list = make_airport_list();	
+	// int start;
+    // for (int i = 0; i < (int) airport_list.size(); i++) {
+    //   if (airport_list[i].get_name() == "Melitopol Air Base") {
+    //     start = i;
+    //   }
+    // }
+	// cout << start << endl;
+
+
 	// for (unsigned i = 0; i < airport_list.size(); i++) {
-	// 	airport_list[i].info();
+	// 	cout << airport_list[i].get_id() << endl;
 	// }
+
 	// test_airport_list(airport_list,1,5);//test case. instruction: second input is the index of the airport you want to check
 	
 	// //cout<<"check0"<<endl;
@@ -38,7 +49,9 @@ int main()
 
 	// test BFS
 	Graph testgraph;
-	testgraph.BFS(2);
+	// testgraph.BFS_all();
+	// testgraph.BFS_id(118);
+	testgraph.BFS_id(1998);
 
 	return 0;
 }

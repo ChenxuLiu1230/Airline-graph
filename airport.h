@@ -37,6 +37,7 @@ class Airport {
         string get_ICAO() const;
         string get_city() const;
         string get_country() const;
+        bool valid() const;  // check whether the current airport is really a valid airport.
         vector <Airport*> get_dd() const;
         vector <Airport*> get_ind() const;
         vector <double> get_weights() const;
