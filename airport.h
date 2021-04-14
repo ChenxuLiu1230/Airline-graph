@@ -28,6 +28,7 @@ class Airport {
         void set_dd(vector <Airport*> in);
         void set_id(vector <Airport*> in);
         void set_weights(vector <double> in);
+        void set_inc(vector <Airport*> in);
 
         int get_id() const;
         double get_lat() const;
@@ -41,11 +42,15 @@ class Airport {
         vector <Airport*> get_dd() const;
         vector <Airport*> get_ind() const;
         vector <double> get_weights() const;
+        vector <Airport*> get_inc() const;
+        vector <double> get_inc_dis() const;
         
         void info();//print information of current airport
         void add_dd(Airport* in);
         void add_ind(Airport* in);
         void add_weight(double in);
+        void add_inc(Airport* in);
+        void add_inc_dis(double in);
 
     private:
       
@@ -64,6 +69,7 @@ class Airport {
         // the elements of the two vectors at the same index represent the same airport.
         vector<Airport*> direct_destinations; // stores a pointer to another airport which has some routes with the current airport.
         vector<Airport*> indirect_destinations; //stores pointer to another airport that needs to stop
-        vector<double> weights;        // stores the corresponding distance, or edge weights.
-
+        vector<double> weights;        // stores the corresponding distance of direct_destnation, or edge weights.
+        vector<Airport*> incoming_airports; // stores a poiner vector of all the airports that can come to this airport in routes.txt
+        vector<double> incoming_distance; // stores distance from current airport to incoming airports
 };

@@ -76,7 +76,9 @@ vector <Airport> make_airport_list(){
 		int counter= 0;
 		string str;
 		string delimiter1 = ","; //some int value are found through ","
-				
+		int flag  = 0;
+		string delimiter2 = ",\"airport\"," ;
+
 		//get airport ID
 		pos = temp.find(delimiter1);
 		str = temp.substr(0,pos);
@@ -86,6 +88,10 @@ vector <Airport> make_airport_list(){
 		//get rest of the information
 		string name, city, country, IATA, ICOA;
 		double lat,lon;
+
+		if (temp.find(delimiter2) != std::string::npos) {
+    		flag = 1;
+		}
 
 		//find full name of the country in current line
 		while ((pos = temp.find(delimiter)) != string::npos) {
@@ -141,8 +147,7 @@ vector <Airport> make_airport_list(){
 							temp.erase(0, pos + delimiter.length());
 						}
 					}
-				}
-				
+				}				
 		}
 		//push airport into vector
 		//some airports are not found in given data base, for example 
@@ -154,10 +159,12 @@ vector <Airport> make_airport_list(){
 				al.push_back(empty);
 			}
 		}
+		if(flag == 1){
 		Airport temp_airport = Airport(id, name, IATA, ICOA, lat, lon, true);
 		temp_airport.set_city(city);
 		temp_airport.set_country(country);
 		al.push_back(temp_airport);
+		}
 		
 	}
 	return al;
@@ -224,14 +231,18 @@ void read_routes(vector <Airport> &in){
 				}							
 		}		
 		if(stop == 0){
-			if(dest_id == 0){}
+			if(dest_id == 0 || source_id == 0 || in[dest_id].get_id() == 0 || in[source_id].get_id() == 0){
+				//skip such line
+			}
 			else{
-			in[source_id].add_dd(&in[dest_id]);			
+			in[source_id].add_dd(&in[dest_id]);		
+			in[dest_id].add_inc(&in[source_id]);
 			double dis;
 			Airport * s = &in[source_id];
 			Airport * d = &in[dest_id];
 			dis = distance(s,d);
-			in[source_id].add_weight(dis);	
+			in[source_id].add_weight(dis);//add dis to weight in source airport node
+			in[dest_id].add_inc_dis(dis);// add dis to incoming_distance in destination airport node
 			}		
 		}
 		else if(stop > 0){
@@ -248,15 +259,24 @@ void read_routes(vector <Airport> &in){
 
 void test_read_routes(vector <Airport> in, size_t n){
 	cout<<"\nstart of test_read_routs"<<endl;
-	vector <Airport*> temp;	
+	vector <Airport*> temp,temp1;	
 	temp = in[n].get_dd();
+	temp1 = in[n].get_inc();
 	cout<<in[n].get_name()<<endl;
-	cout<<"\nsize of current list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
+	
 	cout<<"\n";
 	cout<<"\ndestination list:"<<endl;
 	for(size_t i=0; i<temp.size(); i++){
 		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id()<<endl;
 	}
+
+	cout<<"\nsource airport list is: "<<endl;
+	for(size_t i=0; i<temp1.size(); i++){
+		cout<<temp1[i]->get_name()<<" "<<temp1[i]->get_id()<<endl;
+	}
+
+	cout<<"\nsize of destination list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
+	cout<<"\nsize of incoming list is: "<<temp1.size()<<"\nsize of incoming distance is: "<<in[n].get_inc_dis().size()<<endl;
 	cout<<"\n";
 	
 }
