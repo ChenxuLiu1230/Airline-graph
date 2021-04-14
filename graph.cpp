@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 /**
  * @brief construct the whole airline graph.
@@ -24,7 +25,8 @@ void Graph::BFS_id(int start) {
     queue<Airport*> container;   // used to do BFS.
     vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
     ofstream fout;
-    fout.open("bfs_output.txt");
+    fout.open("output/bfs_output.txt");
+    int count = 0;
 
     container.push(&airports[start]);
     visited[start] = true; 
@@ -42,7 +44,13 @@ void Graph::BFS_id(int start) {
         }
       }
       container.pop();
-      fout << curr -> get_name() << "->";
+      fout << curr -> get_name();
+      fout << "->";
+      count++;
+      if (count == 8) {
+        fout << "\n";
+        count = 0;
+      }
       // curr -> info();   // print relevant information of the airport to represent that this airport is visited.
       
     }
@@ -56,8 +64,8 @@ void Graph::BFS_name(string name) {
     queue<Airport*> container;   // used to do BFS.
     vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
     ofstream fout;
-    fout.open("bfs_output.txt");
-
+    fout.open("output/bfs_output.txt");
+    int count = 0;
     int start;
     // traverse the airports array to find the right start airportID.
     for (int i = 0; i < (int) airports.size(); i++) {
@@ -81,7 +89,13 @@ void Graph::BFS_name(string name) {
         }
       }
       container.pop();
-      fout << curr -> get_name() << "->";
+      fout << curr -> get_name();
+      fout << "->";
+      count++;
+      if (count == 8) {
+        fout << "\n";
+        count = 0;
+      }
       // curr -> info();   // print relevant information of the airport to represent that this airport is visited.
       
       
@@ -97,8 +111,8 @@ void Graph::BFS_IATA(string IATA) {
     queue<Airport*> container;   // used to do BFS.
     vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
     ofstream fout;
-    fout.open("bfs_output.txt");
-
+    fout.open("output/bfs_output.txt");
+    int count = 0;
     int start;
     // traverse the airports array to find the right start airportID.
     for (int i = 0; i < (int) airports.size(); i++) {
@@ -121,7 +135,13 @@ void Graph::BFS_IATA(string IATA) {
         }
       }
       container.pop();
-      fout << curr -> get_name() << "->";
+      fout << curr -> get_name();
+      fout << "->";
+      count++;
+      if (count == 8) {
+        fout << "\n";
+        count = 0;
+      }
       // curr -> info();   // print relevant information of the airport to represent that this airport is visited.
       
     }
@@ -134,7 +154,7 @@ void Graph::BFS_IATA(string IATA) {
 **/
 void Graph::BFS_all() {
   ofstream fout;
-  fout.open("bfs_all_output");
+  fout.open("output/bfs_all_output");
   vector<bool> globalvisited(airports.size(), false);
   for (int i = 0; i < (int) airports.size(); i++) {
     if (airports[i].valid() && !globalvisited[i]) {
@@ -152,6 +172,7 @@ void Graph::BFS_all() {
 void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) {
     queue<Airport*> container;   // used to do BFS.
     vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
+    int count = 0;
 
     container.push(&airports[start]);
     visited[start] = true; 
@@ -170,7 +191,13 @@ void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) 
         }
       }
       container.pop();
-      fout << curr -> get_id() << "->";
+      fout << curr -> get_id() << left << setw(4) << setfill(' ');
+      fout << "->";
+      count++;
+      if (count == 25) {
+        fout << "\n";
+        count = 0;
+      }
       // curr -> info();   // print relevant information of the airport to represent that this airport is visited.
       
     }
