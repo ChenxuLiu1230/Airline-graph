@@ -60,7 +60,7 @@ complete function, ask in wechat group before modifying
 !!!!!!!!!!!!!!!
 */
 vector <Airport> make_airport_list(){
-	ifstream fin("data/airports.txt"); //open file
+	ifstream fin("data/airports2.txt"); //open file
 	string line; 
 	vector <Airport> al;
 	//make airports' index euqal to their ID
@@ -235,8 +235,9 @@ void read_routes(vector <Airport> &in){
 		}
 		else if(stop > 0){
 			indirect_num++;
-			if ( !check_overlap(in,source_id,dest_id) ) cout<<"indrect overlap"<<endl;
-			else in[source_id].add_ind(&in[dest_id]);	
+			//if ( !check_overlap(in,source_id,dest_id) ) cout<<"indrect overlap"<<endl;
+			//else 
+			in[source_id].add_ind(&in[dest_id]);	
 		}
 
 	}
@@ -249,7 +250,7 @@ void test_read_routes(vector <Airport> in, size_t n){
 	vector <Airport*> temp;	
 	temp = in[n].get_dd();
 	cout<<in[n].get_name()<<endl;
-	cout<<"\nsize of current list is: "<<temp.size()<<"\nsize of current weights is: "<<in[1].get_weights().size()<<endl;
+	cout<<"\nsize of current list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
 	cout<<"\n";
 	cout<<"\ndestination list:"<<endl;
 	for(size_t i=0; i<temp.size(); i++){

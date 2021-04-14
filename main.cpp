@@ -38,20 +38,28 @@ int main()
 	// 	cout << airport_list[i].get_id() << endl;
 	// }
 
-	// test_airport_list(airport_list,1,5);//test case. instruction: second input is the index of the airport you want to check
-	
-	// //cout<<"check0"<<endl;
-	// read_routes(airport_list); 
-	// test_read_routes(airport_list,1);
+
+	vector <Country> country_list = make_country_list();//initialize Country, 261 countries in total	
+	// test_country_list(country_list);//test case 
+	vector <Airport> airport_list = make_airport_list();	
+	for(size_t i =0; i<airport_list.size(); i++){
+		if(airport_list[i].get_id() == 0){
+			airport_list[i].set_id((int)i);
+		}
+	}
+	test_airport_list(airport_list,3774,5);//test case. instruction: second input is the index of the airport you want to check
+	read_routes(airport_list); 
+	test_read_routes(airport_list,3599);
 	
 	// //check destination vector 
 	// cout<<check_overlap_2(airport_list,1)<<"\n"<<endl;
 
 	// test BFS
-	Graph testgraph;
+	//Graph testgraph;
 	// testgraph.BFS_all();
 	// testgraph.BFS_id(118);
-	testgraph.BFS_id(1998);
+	//testgraph.BFS_id(1998);
+
 
 	return 0;
 }
