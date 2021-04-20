@@ -266,6 +266,23 @@ vector<int> Graph::shortestPath(int source, int destination) {
 }
 
 
-
-
+bool Graph::checkvalid(Airport s, Airport d){
+  if(s.valid() == false ){
+    cout<<"invalid input source"<<endl;
+    return false;
+  }
+  if(d.valid() == false){
+    cout<<"invalid output source"<<endl;
+    return false;
+  }
+  if(s.get_dd().empty()){
+    cout<<"input source airport is isolated"<<endl;
+    return false;
+  }
+  if(d.get_inc().empty()){
+    cout<<"input destination is isolated"<<endl;
+    return false;
+  }
+  return true;
+}
 

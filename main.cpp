@@ -38,9 +38,11 @@ int main()
 
 	// vector <Country> country_list = make_country_list();//initialize Country, 261 countries in total	
 	//test_country_list(country_list);//test case 
+
 	vector <Airport> airport_list = make_airport_list();	
 
 	// test_airport_list(airport_list,4385,5);//test case. instruction: second input is the index of the airport you want to check
+	
 	// read_routes(airport_list); 
 	// test_read_routes(airport_list,3599);
 	
@@ -50,14 +52,24 @@ int main()
 	// test BFS
 	Graph testgraph;
 	testgraph.BFS_all();
-	vector <int> path = testgraph.shortestPath(1,2);
+	vector <int> path = testgraph.shortestPath(1602,342);
 	cout<<"\n";
-	for(size_t i = 0; i<path.size(); i++){
-		int temp = path[i];
-		if(i == 0) cout<<airport_list[temp].get_name();
-		else cout<<"->" <<airport_list[temp].get_name();
+	if(path.size() != 0){
+		for(size_t i = 0; i<path.size(); i++){
+			int temp = path[i];
+			if(i == 0) cout<<airport_list[temp].get_name();
+			else cout<<"->" <<airport_list[temp].get_name();
+		}
+		cout<<"\n";
+		for(size_t i = 0; i<path.size(); i++){
+			int temp = path[i];
+			if(i == 0) cout<<temp;
+			else cout<<"->" <<temp;
+		}
+	}else{
+		cout<<"\n";
+		cout<<"Cannot find routes"<<endl;
 	}
-	 
 	for(int i = 0; i<5; ++i){
 		cout<<endl;
 	}

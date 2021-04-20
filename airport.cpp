@@ -15,12 +15,14 @@ Airport::Airport() {
     longitude = 0.0;
     flag = false;
     vector<Airport*> a,b,d;
-    vector<double> c,e;
+    vector<double> c,e,f;
     direct_destinations = a;
     indirect_destinations = b;
     weights = c;
     incoming_airports = d;
     incoming_distance = e;
+    distance = f;
+    distance.resize(14111,INT32_MAX);
 }
 
 /**
@@ -32,12 +34,14 @@ Airport::Airport(int airportID, string name, string IATA, string ICAO, double la
 {
 
     vector<Airport*> a,b,d;
-    vector<double> c,e;
+    vector<double> c,e,f;
     direct_destinations = a;
     indirect_destinations = b;
     weights = c;
     incoming_airports = d;
     incoming_distance = e;
+    distance = f;
+    distance.resize(14111,INT32_MAX);
 }
 
 /**
@@ -102,6 +106,7 @@ vector <Airport*> Airport::get_ind() const {return indirect_destinations;}
 vector <double> Airport::get_weights() const {return weights;}
 vector <Airport*> Airport::get_inc() const {return incoming_airports;}
 vector <double> Airport::get_inc_dis() const {return incoming_distance;}
+vector <double> Airport::get_distance() const {return distance;}
 
 // could replace this by overloading the "<<" operator of the Airport class.
 void Airport::info(){    
@@ -147,4 +152,9 @@ void Airport::add_inc_dis(double in){
 
     double temp = in;
     incoming_distance.push_back(temp);
+}
+
+void Airport::add_distance(double in, int index){
+
+    distance[index] = in;
 }

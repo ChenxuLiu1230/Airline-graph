@@ -243,6 +243,7 @@ void read_routes(vector <Airport> &in){
 			dis = distance(s,d);
 			in[source_id].add_weight(dis);//add dis to weight in source airport node
 			in[dest_id].add_inc_dis(dis);// add dis to incoming_distance in destination airport node
+			in[source_id].add_distance(dis,dest_id);
 			}		
 		}
 		else if(stop > 0){

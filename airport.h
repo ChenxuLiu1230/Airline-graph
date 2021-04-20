@@ -44,6 +44,7 @@ class Airport {
         vector <double> get_weights() const;
         vector <Airport*> get_inc() const;
         vector <double> get_inc_dis() const;
+        vector <double> get_distance() const;
         
         void info();//print information of current airport
         void add_dd(Airport* in);
@@ -51,6 +52,9 @@ class Airport {
         void add_weight(double in);
         void add_inc(Airport* in);
         void add_inc_dis(double in);
+        void add_distance(double in, int index);
+
+        
 
     private:
       
@@ -72,4 +76,5 @@ class Airport {
         vector<double> weights;        // stores the corresponding distance of direct_destnation, or edge weights.
         vector<Airport*> incoming_airports; // stores a poiner vector of all the airports that can come to this airport in routes.txt
         vector<double> incoming_distance; // stores distance from current airport to incoming airports
+        vector<double> distance; //stores distance from this->airport to its destinations, index corresponds to their airportID
 };

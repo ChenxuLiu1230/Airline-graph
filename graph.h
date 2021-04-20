@@ -13,6 +13,7 @@ class Graph {
         void BFS_IATA(string IATA);
         void BFS_all();
         vector<int> shortestPath(int source, int destination);
+        bool checkvalid(Airport s, Airport d);
         
 
     private:
