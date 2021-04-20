@@ -218,7 +218,51 @@ void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) 
  * @return a sequence of airportID representing the shortest path found.
 **/ 
 vector<int> Graph::shortestPath(int source, int destination) {
-
+    vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
+    vector<int> parents(airports.size(), -1); // keep track of each airport's parent node.
+    vector<int> dist(airports.size(), INT32_MAX); // keep track of the minimum distance from source to this one.
+    vector<int> ans{};
+    dist[source] = 0;
+    for (size_t count = 0; count < airports.size() - 1; count++) {
+      int temp_air_idx, temp_min=INT32_MAX;
+      for (size_t i = 0; i < dist.size(); i++) {
+        if (!visited[i]) {
+          if (dist[i] < temp_min) {
+            temp_min = dist[i];
+            temp_air_idx = i;
+          }
+        }
+      }
+      visited[temp_air_idx] = false;
+      Airport* temp_airport = &airports[temp_air_idx];
+      vector<Airport*> destinations = temp_airport -> get_dd();
+      for (auto it = destinations.begin(); it != destinations.end(); ++it) {
+        if (!visited[(*it) -> get_id()]) {
+          vector<Airport*> befores = (*it) -> get_inc();
+          vector <double> distances = (*it) -> get_inc_dis();
+          double temp_distance;
+          for (size_t index=0; index < befores.size(); index++) {
+              if ((befores[index] -> get_id()) == (temp_airport -> get_id())) {
+                  temp_distance = distances[index];
+              }
+          }
+          if (dist[(*it) -> get_id()] > (dist[(temp_airport) -> get_id()] + temp_distance)) {
+            parents[(*it) -> get_id()] = (temp_airport) -> get_id();
+            dist[(*it) -> get_id()] = (dist[(temp_airport) -> get_id()] + temp_distance);
+          }
+        }
+      }
+    }
+    while (destination != source) {
+      ans.push_back(destination);
+      destination = parents[destination];
+    }
+    ans.push_back(source);
+    vector<int> ans_reverse(ans.size(), 0);
+    for (size_t i = 0; i < ans.size(); i++) {
+      ans_reverse[ans.size()-1-i] = ans[i];
+    }
+    return ans_reverse;
 }
 
 
