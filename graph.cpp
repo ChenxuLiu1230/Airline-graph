@@ -223,6 +223,17 @@ vector<int> Graph::shortestPath(int source, int destination) {
     vector<int> dist(airports.size(), INT32_MAX); // keep track of the minimum distance from source to this one.
     vector<int> ans{};
     dist[source] = 0;
+    
+    Airport s = airports[source];
+    Airport d = airports[destination];
+    if(checkvalid(s,d) == false){
+      return ans;
+    }
+    for(size_t i = 0; i<airports.size(); i++){
+      if(airports[i].valid() == false) visited[i] = true;
+      if(airports[i].get_inc().empty()) visited[i] = true;
+    }
+
     for (size_t count = 0; count < airports.size() - 1; count++) {
       int temp_air_idx, temp_min=INT32_MAX;
       for (size_t i = 0; i < dist.size(); i++) {
@@ -233,7 +244,7 @@ vector<int> Graph::shortestPath(int source, int destination) {
           }
         }
       }
-      visited[temp_air_idx] = false;
+      //visited[temp_air_idx] = false;
       Airport* temp_airport = &airports[temp_air_idx];
       vector<Airport*> destinations = temp_airport -> get_dd();
       for (auto it = destinations.begin(); it != destinations.end(); ++it) {

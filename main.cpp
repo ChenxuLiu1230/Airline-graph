@@ -41,38 +41,41 @@ int main()
 
 	vector <Airport> airport_list = make_airport_list();	
 
-	// test_airport_list(airport_list,4385,5);//test case. instruction: second input is the index of the airport you want to check
+	//test_airport_list(airport_list,4385,5);//test case. instruction: second input is the index of the airport you want to check
 	
-	// read_routes(airport_list); 
-	// test_read_routes(airport_list,3599);
+	read_routes(airport_list); 
+	test_read_routes(airport_list,3599);
 	
 	// //check destination vector 
 	// cout<<check_overlap_2(airport_list,1)<<"\n"<<endl;
 
+
 	// test BFS
-	Graph testgraph;
-	testgraph.BFS_all();
-	vector <int> path = testgraph.shortestPath(1602,342);
-	cout<<"\n";
-	if(path.size() != 0){
-		for(size_t i = 0; i<path.size(); i++){
-			int temp = path[i];
-			if(i == 0) cout<<airport_list[temp].get_name();
-			else cout<<"->" <<airport_list[temp].get_name();
-		}
-		cout<<"\n";
-		for(size_t i = 0; i<path.size(); i++){
-			int temp = path[i];
-			if(i == 0) cout<<temp;
-			else cout<<"->" <<temp;
-		}
-	}else{
-		cout<<"\n";
-		cout<<"Cannot find routes"<<endl;
-	}
-	for(int i = 0; i<5; ++i){
-		cout<<endl;
-	}
+
+	// Graph testgraph;
+	// testgraph.BFS_all();
+	// vector <int> path = testgraph.shortestPath(1602,342);
+	// cout<<"\n";
+	// if(path.size() != 0){
+	// 	for(size_t i = 0; i<path.size(); i++){
+	// 		int temp = path[i];
+	// 		if(i == 0) cout<<airport_list[temp].get_name();
+	// 		else cout<<"->" <<airport_list[temp].get_name();
+	// 	}
+	// 	cout<<"\n";
+	// 	for(size_t i = 0; i<path.size(); i++){
+	// 		int temp = path[i];
+	// 		if(i == 0) cout<<temp;
+	// 		else cout<<"->" <<temp;
+	// 	}
+	// }else{
+	// 	cout<<"\n";
+	// 	cout<<"Cannot find routes"<<endl;
+	// }
+	// for(int i = 0; i<5; ++i){
+	// 	cout<<endl;
+	// }
+
 	// testgraph.BFS_id(1);
 	//testgraph.BFS_id(1998);
 

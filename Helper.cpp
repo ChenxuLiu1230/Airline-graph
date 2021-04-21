@@ -55,9 +55,6 @@ void test_country_list(vector <Country> l){
 
 //helper function to initialize airports
 /*
-!!!!!!!!!!!!!!!
-complete function, ask in wechat group before modifying
-!!!!!!!!!!!!!!!
 */
 vector <Airport> make_airport_list(){
 	ifstream fin("data/airports2.txt"); //open file
@@ -268,13 +265,16 @@ void test_read_routes(vector <Airport> in, size_t n){
 	cout<<"\n";
 	cout<<"\ndestination list:"<<endl;
 	for(size_t i=0; i<temp.size(); i++){
-		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id()<<endl;
+		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id();
+		cout<<" distance "<<in[n].get_distance()[temp[i]->get_id()];
+		cout<<" (compare)"<<in[n].get_weights()[i]<<endl;
 	}
 
-	cout<<"\nsource airport list is: "<<endl;
-	for(size_t i=0; i<temp1.size(); i++){
-		cout<<temp1[i]->get_name()<<" "<<temp1[i]->get_id()<<endl;
-	}
+
+	// cout<<"\nsource airport list is: "<<endl;
+	// for(size_t i=0; i<temp1.size(); i++){
+	// 	cout<<temp1[i]->get_name()<<" "<<temp1[i]->get_id()<<endl;
+	// }
 
 	cout<<"\nsize of destination list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
 	cout<<"\nsize of incoming list is: "<<temp1.size()<<"\nsize of incoming distance is: "<<in[n].get_inc_dis().size()<<endl;
