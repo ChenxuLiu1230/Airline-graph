@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 /**
  * @brief construct the whole airline graph.
@@ -210,6 +211,18 @@ void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) 
 }
 
 
+struct Node{
+	int x,y;
+	Node(int index, int distance):
+		x(index), y(distance) {}
+};
+ 
+struct cmp{
+	bool operator()(Node a, Node b){
+		if(a.y == b.y)	return a.x>b.x;
+		return a.y>b.y;
+	}
+};
 
 /**
  * @brief Find the shortest path from the source to the destination airport, implemented by the Dijkstra's algorithm.
@@ -223,57 +236,39 @@ vector<int> Graph::shortestPath(int source, int destination) {
     vector<int> dist(airports.size(), INT32_MAX); // keep track of the minimum distance from source to this one.
     vector<int> ans{};
     dist[source] = 0;
-    
-    Airport s = airports[source];
-    Airport d = airports[destination];
-    if(checkvalid(s,d) == false){
-      return ans;
-    }
-    for(size_t i = 0; i<airports.size(); i++){
-      if(airports[i].valid() == false) visited[i] = true;
-      if(airports[i].get_inc().empty()) visited[i] = true;
-    }
-
-    for (size_t count = 0; count < airports.size() - 1; count++) {
-      int temp_air_idx, temp_min=INT32_MAX;
-      for (size_t i = 0; i < dist.size(); i++) {
-        if (!visited[i]) {
-          if (dist[i] < temp_min) {
-            temp_min = dist[i];
-            temp_air_idx = i;
-          }
-        }
-      }
-      //visited[temp_air_idx] = false;
-      Airport* temp_airport = &airports[temp_air_idx];
+    priority_queue<Node, vector<Node>, cmp> p;
+    p.push(Node(source, 0)); 
+    while (!p.empty()) {
+      Node temp_air = p.top();
+      p.pop();
+      int u = temp_air.x;
+      visited[u] = false;
+      Airport* temp_airport = &airports[u];
       vector<Airport*> destinations = temp_airport -> get_dd();
+      vector<double> distance = temp_airport -> get_distance();
       for (auto it = destinations.begin(); it != destinations.end(); ++it) {
-        if (!visited[(*it) -> get_id()]) {
-          vector<Airport*> befores = (*it) -> get_inc();
-          vector <double> distances = (*it) -> get_inc_dis();
-          double temp_distance;
-          for (size_t index=0; index < befores.size(); index++) {
-              if ((befores[index] -> get_id()) == (temp_airport -> get_id())) {
-                  temp_distance = distances[index];
-              }
-          }
-          if (dist[(*it) -> get_id()] > (dist[(temp_airport) -> get_id()] + temp_distance)) {
-            parents[(*it) -> get_id()] = (temp_airport) -> get_id();
-            dist[(*it) -> get_id()] = (dist[(temp_airport) -> get_id()] + temp_distance);
+        int v = (*it) -> get_id();
+        if (!visited[v]) {
+          double temp_distance = distance[v];
+          if (dist[v] > (dist[u] + temp_distance)) {
+            parents[v] = u;
+            dist[v] = (dist[u] + temp_distance);
+            p.push(Node(v, dist[v]));
           }
         }
       }
     }
     while (destination != source) {
+      if (destination == -1) {
+        vector<int> ans{};
+        return ans;
+      }
       ans.push_back(destination);
       destination = parents[destination];
     }
     ans.push_back(source);
-    vector<int> ans_reverse(ans.size(), 0);
-    for (size_t i = 0; i < ans.size(); i++) {
-      ans_reverse[ans.size()-1-i] = ans[i];
-    }
-    return ans_reverse;
+    reverse(ans.begin(), ans.end());
+    return ans;
 }
 
 
