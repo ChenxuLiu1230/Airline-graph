@@ -21,6 +21,14 @@ Shuchen Wu:
   Finish function that consturcts vectors of Airport pointer through reading the data file routes.txt. The generated vectors contain routes bewteen airports. And create the test function to read data in these route vectors.
   
   Finish some optimiztion on the current code. --April 14. 
+
+Bo Jia:
+  Implement the of User-Interface design.
+  Instruct user how to test our system step by step:
+  For example: 
+    1. press 1, 2, 3, 4 to choose specific test type
+    2. in each test, receive the user input as the parameter
+    3. for each test, teach user how to continue and quit test. --April 22.
   
   
 To be continued...
