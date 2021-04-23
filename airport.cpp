@@ -8,7 +8,7 @@ using namespace std;
 **/
 Airport::Airport() {
     airportID = 0;
-    name = "This airport node is empty, no such airport is found in data base";
+    name = "This airport ID does not match any existing airport in the data base";
     IATA = "";
     ICAO = "";
     latitude = 0.0;
@@ -113,15 +113,15 @@ void Airport::info(){
     if(!flag){
         cout<<name<<endl;
     }else{
-        cout<<airportID<<" th ariport info: "<<endl;
-        cout<< " ID is "<< airportID<<", "; 
-	    cout<< " name is "<<name<<", ";
-	    cout<< " city is "<<city<<", ";
-	    cout<< " country is "<<country<<", ";
-	    cout<< " latitude is "<<latitude<<", ";
-	    cout<< " longitude is "<<longitude<<", ";
-	    cout<< " IATA is "<<IATA<<", ";
-	    cout<< " ICOA is "<<ICAO<<endl;
+        
+        cout<< "\n ID: "<< airportID<<", "; 
+	    cout<< "\n name: "<<name<<", ";
+	    cout<< "\n city: "<<city<<", ";
+	    cout<< "\n country: "<<country<<", ";
+	    cout<< "\n latitude: "<<latitude<<", ";
+	    cout<< "\n longitude: "<<longitude<<", ";
+	    cout<< "\n IATA: "<<IATA<<", ";
+	    cout<< "\n ICOA: "<<ICAO<<endl;
     }
 }
 

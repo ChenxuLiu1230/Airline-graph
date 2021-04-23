@@ -28,7 +28,7 @@ vector <Airport> make_airport_list();
  * @brief test function that verify make_airport_list(), cna be modified freely
  * n and m are the nth and mth airports you want to test
 **/ 
-void test_airport_list(vector <Airport> in, int n, int m);
+void test_airport_list(vector <Airport> in, int n);
 
 /**
  * @brief helper function to initialize routes, in is airport vector

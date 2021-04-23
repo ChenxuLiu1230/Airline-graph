@@ -170,20 +170,10 @@ vector <Airport> make_airport_list(){
 //test case for make_airport_list()
 //instruction in is the input airport vector, 
 //n and m are the Unique ID of the airport, same as the line number in the txt file
-void test_airport_list(vector <Airport> in, int n, int m){
+void test_airport_list(vector <Airport> in, int n){
 	cout<<"\nstart of test_airport_list"<<endl;
 	cout<<"\nfirst input airport"<<endl;
 	in[n].info();
-
-	cout<<"\nsecond input airport"<<endl;
-	in[m].info();
-
-	cout<<"\nlast ariport info: "<<endl;
-	in.back().info();	
-
-	cout<<"\nsize of airport_list is "<<in.size()<<endl;
-
-	cout<<"\ncapacity of airport_list is "<<in.capacity()<<"\n"<<endl;
 }
 
 void read_routes(vector <Airport> &in){
@@ -260,23 +250,16 @@ void test_read_routes(vector <Airport> in, size_t n){
 	vector <Airport*> temp,temp1;	
 	temp = in[n].get_dd();
 	temp1 = in[n].get_inc();
-	cout<<in[n].get_name()<<endl;
-	
-	cout<<"\n";
+	if(!in[n].valid()){
+		cout<<in[n].get_name();
+		return;
+	}
+	cout<<"The input airport is "<<in[n].get_name()<<endl;
 	cout<<"\ndestination list:"<<endl;
 	for(size_t i=0; i<temp.size(); i++){
-		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id();
-		cout<<" distance "<<in[n].get_distance()[temp[i]->get_id()];
-		cout<<" (compare)"<<in[n].get_weights()[i]<<endl;
+		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id()<<" ";
 	}
-
-
-	// cout<<"\nsource airport list is: "<<endl;
-	// for(size_t i=0; i<temp1.size(); i++){
-	// 	cout<<temp1[i]->get_name()<<" "<<temp1[i]->get_id()<<endl;
-	// }
-
-	cout<<"\nsize of destination list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
+	cout<<"\n\nsize of destination list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
 	cout<<"\nsize of incoming list is: "<<temp1.size()<<"\nsize of incoming distance is: "<<in[n].get_inc_dis().size()<<endl;
 	cout<<"\n";
 	

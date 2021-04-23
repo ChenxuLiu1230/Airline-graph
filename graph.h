@@ -11,9 +11,12 @@ class Graph {
         void BFS_id(int start);
         void BFS_name(string name);
         void BFS_IATA(string IATA);
-        void BFS_all();
-        vector<int> shortestPath(int source, int destination);
-        bool checkvalid(Airport s, Airport d);
+        void BFS_all();                     //BFS
+        vector<int> shortestPath(int source, int destination);//use Dijkastra to find shortes path
+        bool checkvalid(int in);
+        vector<Airport> get_airports();
+        vector<int> Dijkastra(int source);  //Dijkastra
+        void bc(int source);                 //Betweeness Centrality
         
 
     private:

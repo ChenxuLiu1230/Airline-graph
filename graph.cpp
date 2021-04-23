@@ -230,11 +230,12 @@ struct cmp{
  * @param : destination, the airportID of the destination airport.
  * @return a sequence of airportID representing the shortest path found.
 **/ 
-vector<int> Graph::shortestPath(int source, int destination) {
+vector<int> Graph::shortestPath(int source, int destination) {   
     vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
     vector<int> parents(airports.size(), -1); // keep track of each airport's parent node.
     vector<int> dist(airports.size(), INT32_MAX); // keep track of the minimum distance from source to this one.
     vector<int> ans{};
+
     dist[source] = 0;
     priority_queue<Node, vector<Node>, cmp> p;
     p.push(Node(source, 0)); 
@@ -272,23 +273,107 @@ vector<int> Graph::shortestPath(int source, int destination) {
 }
 
 
-bool Graph::checkvalid(Airport s, Airport d){
+bool Graph::checkvalid(int in){
+  cout<<"\n"<<endl;
+  if(in<0 || in > 14111){
+    cout<<"invald input airport ID"<<endl;
+    return false;
+  }
+  Airport s = airports[in];
   if(s.valid() == false ){
-    cout<<"invalid input source"<<endl;
+    cout<<"Warning. Input: "<<in<<endl;
+    cout<<s.get_name()<<"\nTry again\n"<<endl;
     return false;
   }
-  if(d.valid() == false){
-    cout<<"invalid output source"<<endl;
-    return false;
+
+  else if(s.get_dd().empty() && s.get_inc().empty()){
+    cout<<"\n\nThis input airport is isolated"<<endl;
   }
-  if(s.get_dd().empty()){
-    cout<<"input source airport is isolated"<<endl;
-    return false;
-  }
-  if(d.get_inc().empty()){
-    cout<<"input destination is isolated"<<endl;
-    return false;
-  }
+
   return true;
 }
 
+vector<Airport> Graph::get_airports(){return airports;}
+
+vector<int> Graph::Dijkastra(int source){
+    vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
+    vector<int> parents(airports.size(), -1); // keep track of each airport's parent node.
+    vector<int> dist(airports.size(), INT32_MAX); // keep track of the minimum distance from source to this one.
+    vector<int> ans{};
+
+    dist[source] = 0;
+    priority_queue<Node, vector<Node>, cmp> p;
+    p.push(Node(source, 0)); 
+    while (!p.empty()) {
+      Node temp_air = p.top();
+      p.pop();
+      int u = temp_air.x;
+      visited[u] = false;
+      Airport* temp_airport = &airports[u];
+      vector<Airport*> destinations = temp_airport -> get_dd();
+      vector<double> distance = temp_airport -> get_distance();
+      for (auto it = destinations.begin(); it != destinations.end(); ++it) {
+        int v = (*it) -> get_id();
+        if (!visited[v]) {
+          double temp_distance = distance[v];
+          if (dist[v] > (dist[u] + temp_distance)) {
+            parents[v] = u;
+            dist[v] = (dist[u] + temp_distance);
+            p.push(Node(v, dist[v]));
+          }
+        }
+      }
+    }
+    return parents;
+}
+
+void Graph::bc(int source){
+  Airport s = airports[source];
+  if(s.get_dd().empty() && s.get_inc().empty()){
+    cout<<"\nBecause "<<source<<" is isolated, the system cannot find betweeness centrality airport node\n"<<endl;
+    return;
+  }
+  //initialize variables
+  vector<int> count(14111,0);
+  vector<int> parents = Dijkastra(source);
+  vector<int> ans;
+  int total_paths = 0;
+  size_t source1 = (size_t)source;
+
+  //find all shortest paths, from input source to the rest of airports
+  for(size_t i = 1; i<14111; i++){
+    if(i == source1) continue;                  //if i is source, skip it
+    if(airports[i].valid() == false) continue;  //if airport i is invalid, skip it
+    total_paths++;                              //keep track of total numbers of paths
+    int destination = (int)i;                     //temp value that stores the current destination of the path
+    while (destination != source) {            //get the short path from source to current destination
+      if (destination == -1) {
+        vector<int> a{};
+        ans = a;
+        break;
+      }
+      ans.push_back(destination);
+      destination = parents[destination];
+    }
+    for(size_t j = 0; j<ans.size(); j++){       //for any airports in the path, increment once in "count"
+      int temp1 = ans[j];                        //ID of the airport in the path
+      if(temp1 == (int)i) continue;              //skip current destination
+      else count[temp1]++;                     
+    }
+    ans.clear();
+  }
+  int out;
+  int temp2 =0;
+  for(size_t i = 0; i<count.size(); i++){
+    if(temp2<count[i]){
+      temp2 = count[i];
+      out = i;
+    }
+  }
+  cout<<"\nWhen the source airport is "<<airports[source].get_name()<<", ID "<<source<<" "<<endl;
+  cout<<"The betweeness centrality airport node is: \n"<<airports[out].get_name()<<", ID "<<out;
+  cout<<". The betweeness centrality value is: "<<temp2<<"/"<<total_paths<<"\n\n"<<endl;
+
+}
+
+ 
