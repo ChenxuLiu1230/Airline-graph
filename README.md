@@ -2,7 +2,11 @@
 
 
 ## How to use and test our system?
-1. There will be detailed instructions when user enters in our program.
-2. Input specific Integer to choose test type or quit this program.
-3. Within each test, you will see how to continue and quit that test.
+1. Compile and run our main.cpp file
+2. You will see a message indicating a successful entry
+3. Follow the prompts to select the test type and start the test
+4. Enter parameter information as prompted
+5. After the test is over, you can choose to repeat the test or exit the current test
 - *Note:* When two parameters are needed, please separate them with a space.
+
+
