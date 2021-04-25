@@ -4,7 +4,8 @@
 ## How to use and test our system?
 1. Compile and run our main.cpp file
 
-  On EWS terminal, type make to complie, and then type ./finalproj to run our code.
+   On EWS terminal, type make to complie, and then type ./finalproj to run our code.
+  
 2. You will see a message indicating a successful entry
 3. Follow the prompts to select the test type and start the test
 4. Enter parameter information input as prompted
