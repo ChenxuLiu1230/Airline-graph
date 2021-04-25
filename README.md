@@ -8,5 +8,4 @@
 4. Enter parameter information as prompted
 5. After the test is over, you can choose to repeat the test or exit the current test
 - *Note:* When two parameters are needed, please separate them with a space.
-
-
+- *Note:* All of our algorithms are implemented in graph.cpp, while the functions that are used to read data are implemented in helper.cpp
