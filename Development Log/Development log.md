@@ -46,5 +46,8 @@ Shuchen Wu:
   
 #### Week3: April 25 - May 1
 
+Shuchen Wu
+
+  Add final project report.
 
 #### Week4: May 2 - May 8
