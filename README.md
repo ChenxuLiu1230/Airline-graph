@@ -27,7 +27,7 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 - *Note:* All of our algorithms are implemented in graph.cpp, while the functions that are used to read data are implemented in helper.cpp
 
 
-## Project Description
+## Project Description:
 
 In this project, we successfully implemented the following 3 algorighms:
 - We use the **BFS algorithm** to traverse all of the airport nodes in the graph we created.
