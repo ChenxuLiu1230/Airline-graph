@@ -51,3 +51,7 @@ Shuchen Wu
   Add final project report.
 
 #### Week4: May 2 - May 8
+
+Bo Jia:
+
+  Update the content and layout of README.md file.  --May 5
