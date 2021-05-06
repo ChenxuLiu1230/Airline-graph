@@ -30,7 +30,7 @@ Shuchen Wu:
 
 Bo Jia:
   
-  Implement the of User-Interface design.
+  Implement the User-Interface design.
   Instruct user how to test our system step by step:
   For example: 
     1. press 1, 2, 3, 4 to choose specific test type.
