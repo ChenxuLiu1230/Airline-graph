@@ -13,11 +13,7 @@
 #include "Helper.cpp" 
 using namespace std;
 
-
-
-
-
-
+//User interface is constructed below
 int main()
 {	
 	cout<<"\n\n\n\n"<<"Initializing..."<<endl;
@@ -31,14 +27,6 @@ int main()
     //   }
     // }
 	// cout << start << endl;
-
-
-	// for (unsigned i = 0; i < airport_list.size(); i++) {
-	// 	cout << airport_list[i].get_id() << endl;
-	// }
-
-
-
 	// test BFS
 
 	Graph testgraph;
@@ -158,7 +146,7 @@ int main()
 					// TODO: Please check the value of x and y before using test1!
                 	testgraph.bc(x);
             		int d_check;
-            		cout << "Press 4 to try test4 again, press other integers to quit..." << endl;
+            		cout << "Press 4 to try test another airport, press other integers to quit..." << endl;
             		cin >> d_check;
             		if(d_check != 4){
             			check = false;
@@ -181,21 +169,3 @@ int main()
 
 
 
-
-
-
-
-// int main(int argc, const char * argv[]) {
-// 	std::cout << "Filename: " << argv[1] << std::endl;
-	
-// 	// convert file to string representation
-// 	std::cout << "String Representation:" << std::endl;
-// 	std::cout << file_to_string(argv[1]) << std::endl;
-	
-// 	// convert file to vector representation
-// 	std::cout << "Vector Representation:" << std::endl;
-// 	std::vector<std::string> vectorRepr = file_to_vector(argv[1]);
-// 	for (auto word : vectorRepr) {
-// 		std::cout << word << std::endl;
-// 	}	
-// }

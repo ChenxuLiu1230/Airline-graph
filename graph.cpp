@@ -312,7 +312,7 @@ vector<Airport> Graph::get_airports(){return airports;}
 
 
 /**
- * @brief Calculate shortest path used for betweenness centrality.
+ * @brief Helper function that calculates shortest paths used for betweenness centrality.
  * @param : source, the airportID of the source airport.
  * @return shortest path from the source airport to all the other airports in the graph.
 **/ 
@@ -350,9 +350,9 @@ vector<int> Graph::Dijkastra(int source){
 
 
 /**
- * @brief Calculate the airport with the largest betweenness centrality with respect to a source node.
+ * @brief Find the airport with the largest betweenness centrality with respect to a source node.
  * @param : source, the airportID of the source airport.
- * @return print out relevant information of the most "important" stops with the largest betweenness centrality.
+ * @return print out relevant information of the most "important" stop with the largest betweenness centrality.
 **/ 
 void Graph::bc(int source){
   Airport s = airports[source];
@@ -371,7 +371,6 @@ void Graph::bc(int source){
   for(size_t i = 1; i<14111; i++){
     if(i == source1) continue;                  //if i is source, skip it
     if(airports[i].valid() == false) continue;  //if airport i is invalid, skip it
-    total_paths++;                              //keep track of total numbers of paths
     int destination = (int)i;                     //temp value that stores the current destination of the path
     while (destination != source) {            //get the short path from source to current destination
       if (destination == -1) {
@@ -387,6 +386,7 @@ void Graph::bc(int source){
       if(temp1 == (int)i) continue;              //skip current destination
       else count[temp1]++;                     
     }
+    if(!ans.empty()) total_paths++;   //keep track of total number of paths
     ans.clear();
   }
   int out;
@@ -398,8 +398,12 @@ void Graph::bc(int source){
     }
   }
   cout<<"\nWhen the source airport is "<<airports[source].get_name()<<", ID "<<source<<"."<<endl;
-  cout<<"The airport node with the largest  betweeness centrality is: "<<airports[out].get_name()<<", ID "<<out<<"."<<endl;
-  cout<<"The betweeness centrality value is: "<<temp2<<"/"<<total_paths<<"\n\n"<<endl;
+  if(airports[out].valid() == true){
+    cout<<"The airport node with the largest  betweeness centrality is: "<<airports[out].get_name()<<", ID "<<out<<"."<<endl;
+    cout<<"The betweeness centrality value is: "<<temp2<<"/"<<total_paths<<"\n\n"<<endl;
+  }else{
+    cout<<"There is no intermediate airport among all the routes!\n\n"<<endl;
+  }
 
 }
 

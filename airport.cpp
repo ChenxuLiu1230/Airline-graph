@@ -132,6 +132,9 @@ ostream& operator<<(ostream& os, const Airport & source) {
     return os;
 }
 
+/**
+ * @brief public add functions that can modify private vectors.
+**/
 void Airport::add_dd(Airport* in){
 
     Airport * temp = in;

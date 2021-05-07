@@ -319,7 +319,7 @@ string check_overlap_2(vector <Airport> in, size_t n){
 			if(a==b) return "there are overlap routes";
 		}
 	}
-	return "all distince routes";
+	return "all distinct routes";
 }
 
 int getIndex(vector<int> v, int K)
