@@ -15,7 +15,7 @@ class Airport {
 
         
         bool operator==(const Airport & other);
-
+        friend ostream& operator<<(ostream& os, const Airport & source);
         //newly added
         void set_id(int id_);
         void set_name(string name_);
@@ -46,7 +46,7 @@ class Airport {
         vector <double> get_inc_dis() const;
         vector <double> get_distance() const;
         
-        void info();//print information of current airport
+        // void info();//print information of current airport
         void add_dd(Airport* in);
         void add_ind(Airport* in);
         void add_weight(double in);

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -42,9 +43,10 @@ int main()
 
 	Graph testgraph;
 	vector <Airport> airport_list = testgraph.get_airports();
-	testgraph.BFS_all();
-	// testgraph.BFS_id(1);
-	//testgraph.BFS_id(1998);
+	// testgraph.BFS_all();
+	// testgraph.BFS_all();
+	// testgraph.BFS_id(118);
+	// testgraph.BFS_id(1998);
 
 	cout<<"\n\n"<<endl;
 
@@ -63,7 +65,7 @@ int main()
         cin >> test_type;
         switch (test_type) {
             case 1: {
-            	cout << "Tip: you have successful entered Test1" << endl;
+            	cout << "Tip: you have successfully entered Test1" << endl;
             	bool check = true;
             	while(check){
             		cout << "Please input one parameter([0-14111]): " << endl;
@@ -83,7 +85,7 @@ int main()
             	break;
             }
             case 2: {
-            	cout << "Tip: you have successful entered Test2" << endl;
+            	cout << "Tip: you have successfully entered Test2" << endl;
             	bool check = true;
             	while(check){
             		cout << "Please input one parameter ([0-14111]): " << endl;
@@ -103,7 +105,7 @@ int main()
             	break;                
             }
             case 3: {
-            	cout << "Tip: you have successful entered Test3" << endl;
+            	cout << "Tip: you have successfully entered Test3" << endl;
             	bool check = true;
             	while(check){
             		cout << "Please input two parameters([0-14111]): " << endl;
@@ -144,7 +146,7 @@ int main()
             	break;
             }
             case 4:{
-            	cout << "Tip: you have successful entered Test4" << endl;
+            	cout << "Tip: you have successfully entered Test4" << endl;
 
             	bool check = true;
             	while(check){
@@ -176,7 +178,6 @@ int main()
 
 	return 0;
 }
-
 
 
 

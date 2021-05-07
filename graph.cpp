@@ -167,27 +167,42 @@ void Graph::BFS_all() {
 }
 
 /**
+ * @brief Used for BFS sanity check.
+ * @return the vector tracking whether each of the airport node has been visited.
+**/
+vector<bool> Graph::BFS_all_check() {
+  ofstream fout;
+  fout.open("output/bfs_all_output");
+  vector<bool> globalvisited(airports.size(), false); // keep track of whether each airport has been visited or not.
+  for (int i = 0; i < (int) airports.size(); i++) {
+    if (airports[i].valid() && !globalvisited[i]) {
+      BFS_helper(i, fout, globalvisited);
+    }
+  }
+  return globalvisited;
+
+
+}
+
+/**
  * @brief Helper function to traverse all the connected components.
  * @param : start, marks the airportID of the starting airport of the traversal.
 **/
 void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) {
     queue<Airport*> container;   // used to do BFS.
-    vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
     int count = 0;
 
     container.push(&airports[start]);
-    visited[start] = true; 
-    
+    globalvisited[start] = true; 
     while (!container.empty()) {
       Airport * curr = container.front();
       // loop through all the curr's neighbor airports, if not yet visited, push it into the queue.
       vector<Airport*> destinations = curr -> get_dd();
       for (auto it = destinations.begin(); it != destinations.end(); ++it) {
-        if (!visited[(*it) -> get_id()]) {
+        if (!globalvisited[(*it) -> get_id()]) {
           container.push(*it);
           // We mark the airport as visited once the airport is pushed into the queue,
           // although it has not been truly "visited", in this way we could avoid pushing redundant airports into the queue.
-          visited[(*it) -> get_id()] = true;  
           globalvisited[(*it) -> get_id()] = true;
         }
       }
@@ -295,6 +310,12 @@ bool Graph::checkvalid(int in){
 
 vector<Airport> Graph::get_airports(){return airports;}
 
+
+/**
+ * @brief Calculate shortest path used for betweenness centrality.
+ * @param : source, the airportID of the source airport.
+ * @return shortest path from the source airport to all the other airports in the graph.
+**/ 
 vector<int> Graph::Dijkastra(int source){
     vector<bool> visited(airports.size(), false); // keep track of whether each airport has been visited or not.
     vector<int> parents(airports.size(), -1); // keep track of each airport's parent node.
@@ -327,10 +348,16 @@ vector<int> Graph::Dijkastra(int source){
     return parents;
 }
 
+
+/**
+ * @brief Calculate the airport with the largest betweenness centrality with respect to a source node.
+ * @param : source, the airportID of the source airport.
+ * @return print out relevant information of the most "important" stops with the largest betweenness centrality.
+**/ 
 void Graph::bc(int source){
   Airport s = airports[source];
   if(s.get_dd().empty() && s.get_inc().empty()){
-    cout<<"\nBecause "<<source<<" is isolated, the system cannot find betweeness centrality airport node\n"<<endl;
+    cout<<"\nBecause "<<source<<" is isolated, it is meaningless for the system to find betweeness centrality airport node\n"<<endl;
     return;
   }
   //initialize variables
@@ -370,9 +397,61 @@ void Graph::bc(int source){
       out = i;
     }
   }
-  cout<<"\nWhen the source airport is "<<airports[source].get_name()<<", ID "<<source<<" "<<endl;
-  cout<<"The betweeness centrality airport node is: \n"<<airports[out].get_name()<<", ID "<<out;
-  cout<<". The betweeness centrality value is: "<<temp2<<"/"<<total_paths<<"\n\n"<<endl;
+  cout<<"\nWhen the source airport is "<<airports[source].get_name()<<", ID "<<source<<"."<<endl;
+  cout<<"The airport node with the largest  betweeness centrality is: "<<airports[out].get_name()<<", ID "<<out<<"."<<endl;
+  cout<<"The betweeness centrality value is: "<<temp2<<"/"<<total_paths<<"\n\n"<<endl;
+
+}
+
+/**
+ * @brief Test function for bc
+ * @param : source, the airportID of the source airport.
+ * @return the airport node with the largest bc wpt to the source node.
+**/ 
+int Graph::bc_check(int source){
+  Airport s = airports[source];
+  if(s.get_dd().empty() && s.get_inc().empty()){
+    
+    return 0;
+  }
+  //initialize variables
+  vector<int> count(14111,0);
+  vector<int> parents = Dijkastra(source);
+  vector<int> ans;
+  int total_paths = 0;
+  size_t source1 = (size_t)source;
+
+  //find all shortest paths, from input source to the rest of airports
+  for(size_t i = 1; i<14111; i++){
+    if(i == source1) continue;                  //if i is source, skip it
+    if(airports[i].valid() == false) continue;  //if airport i is invalid, skip it
+    total_paths++;                              //keep track of total numbers of paths
+    int destination = (int)i;                     //temp value that stores the current destination of the path
+    while (destination != source) {            //get the short path from source to current destination
+      if (destination == -1) {
+        vector<int> a{};
+        ans = a;
+        break;
+      }
+      ans.push_back(destination);
+      destination = parents[destination];
+    }
+    for(size_t j = 0; j<ans.size(); j++){       //for any airports in the path, increment once in "count"
+      int temp1 = ans[j];                        //ID of the airport in the path
+      if(temp1 == (int)i) continue;              //skip current destination
+      else count[temp1]++;                     
+    }
+    ans.clear();
+  }
+  int out;
+  int temp2 =0;
+  for(size_t i = 0; i<count.size(); i++){
+    if(temp2<count[i]){
+      temp2 = count[i];
+      out = i;
+    }
+  }
+  return out;
 
 }
 

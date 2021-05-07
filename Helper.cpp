@@ -11,6 +11,7 @@
 #include "country.h"
 #include "airport.h"
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
 
@@ -170,10 +171,10 @@ vector <Airport> make_airport_list(){
 //test case for make_airport_list()
 //instruction in is the input airport vector, 
 //n and m are the Unique ID of the airport, same as the line number in the txt file
-void test_airport_list(vector <Airport> in, int n){
+void test_airport_list(vector <Airport> & in, int n){
 	cout<<"\nstart of test_airport_list"<<endl;
 	cout<<"\nfirst input airport"<<endl;
-	in[n].info();
+	cout<<in[n];
 }
 
 void read_routes(vector <Airport> &in){
@@ -245,22 +246,41 @@ void read_routes(vector <Airport> &in){
 
 }
 
-void test_read_routes(vector <Airport> in, size_t n){
+void test_read_routes(vector<Airport> & in, size_t n){
 	cout<<"\nstart of test_read_routs"<<endl;
 	vector <Airport*> temp,temp1;	
+	vector<int> dd_visited;  		// used to check repeated nodes in destination list.
+	vector<int> source_visited; 	// used to check repeated nodes in incoming list.
+	int dd_size = 0;
+	int source_size = 0;
 	temp = in[n].get_dd();
 	temp1 = in[n].get_inc();
 	if(!in[n].valid()){
 		cout<<in[n].get_name();
 		return;
 	}
-	cout<<"The input airport is "<<in[n].get_name()<<endl;
+	cout<<"The input airport is Airport "<<in[n].get_id()<<": "<<in[n].get_name()<<endl;
 	cout<<"\ndestination list:"<<endl;
 	for(size_t i=0; i<temp.size(); i++){
-		cout<<temp[i]->get_name()<<" "<<temp[i]->get_id()<<" ";
+		if (count(dd_visited.begin(), dd_visited.end(), temp[i]->get_id())) {
+			continue;
+		}
+		cout<<"Airport "<<temp[i]->get_id()<<": "<<temp[i]->get_name()<< endl;
+		dd_visited.push_back(temp[i]->get_id());
+		dd_size++;
 	}
-	cout<<"\n\nsize of destination list is: "<<temp.size()<<"\nsize of current weights is: "<<in[n].get_weights().size()<<endl;
-	cout<<"\nsize of incoming list is: "<<temp1.size()<<"\nsize of incoming distance is: "<<in[n].get_inc_dis().size()<<endl;
+
+	cout<<"\nincoming source list:"<<endl;
+	for(size_t i=0; i<temp1.size(); i++){
+		if (count(source_visited.begin(), source_visited.end(), temp1[i]->get_id())) {
+			continue;
+		}
+		cout<<"Airport "<<temp1[i]->get_id()<<": "<<temp1[i]->get_name()<< endl;
+		source_visited.push_back(temp1[i]->get_id());
+		source_size++;
+	}
+	cout<<"\n\nsize of destination list is: "<<dd_size<<"\nsize of current weights is: "<<dd_size<<endl;
+	cout<<"\nsize of incoming list is: "<<source_size<<"\nsize of incoming distance is: "<<source_size<<endl;
 	cout<<"\n";
 	
 }

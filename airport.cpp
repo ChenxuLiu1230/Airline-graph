@@ -108,21 +108,28 @@ vector <Airport*> Airport::get_inc() const {return incoming_airports;}
 vector <double> Airport::get_inc_dis() const {return incoming_distance;}
 vector <double> Airport::get_distance() const {return distance;}
 
-// could replace this by overloading the "<<" operator of the Airport class.
-void Airport::info(){    
-    if(!flag){
-        cout<<name<<endl;
-    }else{
+
+// void Airport::info(){    
+//     if(!flag){
+//         cout<<name<<endl;
+//     }else{
         
-        cout<< "\n ID: "<< airportID<<", "; 
-	    cout<< "\n name: "<<name<<", ";
-	    cout<< "\n city: "<<city<<", ";
-	    cout<< "\n country: "<<country<<", ";
-	    cout<< "\n latitude: "<<latitude<<", ";
-	    cout<< "\n longitude: "<<longitude<<", ";
-	    cout<< "\n IATA: "<<IATA<<", ";
-	    cout<< "\n ICOA: "<<ICAO<<endl;
-    }
+//         cout<< "\n ID: "<< airportID<<", "; 
+// 	    cout<< "\n name: "<<name<<", ";
+// 	    cout<< "\n city: "<<city<<", ";
+// 	    cout<< "\n country: "<<country<<", ";
+// 	    cout<< "\n latitude: "<<latitude<<", ";
+// 	    cout<< "\n longitude: "<<longitude<<", ";
+// 	    cout<< "\n IATA: "<<IATA<<", ";
+// 	    cout<< "\n ICOA: "<<ICAO<<endl;
+//     }
+// }
+
+ostream& operator<<(ostream& os, const Airport & source) {
+    os << "\n ID: "<< source.airportID<<", "<<"\n name: "<<source.name <<"\n city: "<< source.city<<", "<<"\n country: "<<source.country<<", "
+        <<"\n latitude: "<<source.latitude<<", "<<"\n longitude: "<<source.longitude<<", "<<"\n IATA: "<<source.IATA<<", "
+        <<"\n ICAO: "<<source.ICAO<<endl;
+    return os;
 }
 
 void Airport::add_dd(Airport* in){
