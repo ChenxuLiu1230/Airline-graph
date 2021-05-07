@@ -30,7 +30,13 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 3. Follow the prompts to select the test type and start the test
 4. Enter parameter information input as prompted
 5. After the test is over, you can choose to repeat the test or exit the current test
-
+6. Test cases of our project is located in [tests](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/tests). To run our test, type:
+   ```C++
+   $ make test
+   
+   $ ./test
+   ```
+ 
 - *Note: When two parameters are needed, please separate them with a **space** or you can press **enter** to after your first input parameter.*
 - *Note: All of our algorithms are implemented in graph.cpp, while the functions that are used to read data are implemented in helper.cpp.*
 
