@@ -9,7 +9,7 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 
 ## How to find documents?
 
-1. Contarct and proposal can be found in repository [Contract&Proposal] (https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Contract%26Proposal).
+1. Contarct and proposal can be found in repository [Contract&Proposal](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Contract%26Proposal).
 
 ## How to build and run our system?
 
