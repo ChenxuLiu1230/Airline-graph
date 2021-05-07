@@ -46,7 +46,7 @@ Shuchen Wu:
   
 #### Week3: April 25 - May 1
 
-Shuchen Wu
+Shuchen Wu：
 
   Add final project report.
 
@@ -55,3 +55,6 @@ Shuchen Wu
 Bo Jia:
 
   Update the content and layout of README.md file.  --May 5
+  
+Shuchen Wu：
+  Update Betweenness Centrality algorithm, comments, fianl report, and readme. --May 6
