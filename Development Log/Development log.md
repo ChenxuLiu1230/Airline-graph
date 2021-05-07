@@ -59,3 +59,7 @@ Bo Jia:
 Shuchen Wu：
 
   Update Betweenness Centrality algorithm, comments, fianl report, and readme. --May 6
+
+Chenxu Liu:
+  Optimize BFS.
+  Add test cases for each of the algorithms implemented.
