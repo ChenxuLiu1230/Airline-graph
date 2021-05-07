@@ -31,8 +31,8 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 4. Enter parameter information input as prompted
 5. After the test is over, you can choose to repeat the test or exit the current test
 
-- *Note:* When two parameters are needed, please separate them with a *space* or you can press *enter* to after your first input parameter.
-- *Note:* All of our algorithms are implemented in graph.cpp, while the functions that are used to read data are implemented in helper.cpp
+- *Note: When two parameters are needed, please separate them with a **space** or you can press **enter** to after your first input parameter.*
+- *Note: All of our algorithms are implemented in graph.cpp, while the functions that are used to read data are implemented in helper.cpp.*
 
 
 ## Project Description:
