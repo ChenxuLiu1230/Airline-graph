@@ -40,4 +40,4 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 In this project, we successfully implemented the following 3 algorithms:
 - We use the **BFS algorithm** to traverse all of the airport nodes in the graph we created.
 - We use the **Dijkastra algorithm** to generate the shortest path between input source airport and destination airport.
-- We use the **Betweenness Centrality algorithm** to find the airport ID node with the largest betweenness centrality.
+- We use the **Betweenness Centrality algorithm** to find the airport node with the largest betweenness centrality.
