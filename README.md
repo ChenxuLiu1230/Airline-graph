@@ -9,10 +9,10 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 
 ## How to find documents?
 
-1. Contract and proposal can be found in repository [Contract&Proposal](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Contract%26Proposal).
-2. Development log can be found in repository [Development Log](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Development%20Log)
-3. Final report can be found in repository [Final project report](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Final%20Project%20report)
-4. Presentation PPT and video can be found in repository [TBD]().
+1. ***Contract*** and ***Proposal*** can be found in repository [Contract&Proposal](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Contract%26Proposal).
+2. ***Development log*** can be found in repository [Development Log](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Development%20Log)
+3. ***Final report*** can be found in repository [Final project report](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Final%20Project%20report)
+4. ***Presentation PPT and video*** can be found in repository [TBD]().
 
 ## How to build and run our system?
 
