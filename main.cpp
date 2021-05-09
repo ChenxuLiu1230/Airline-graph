@@ -13,7 +13,8 @@
 #include "Helper.cpp" 
 using namespace std;
 
-//User interface is constructed below
+// User interface is constructed below
+
 int main()
 {	
 	cout<<"\n\n\n\n"<<"Initializing..."<<endl;
@@ -27,14 +28,17 @@ int main()
     //   }
     // }
 	// cout << start << endl;
-	// test BFS
+	
 
 	Graph testgraph;
 	vector <Airport> airport_list = testgraph.get_airports();
+
+	// Do BFS and write the results into a txt file.
+	testgraph.BFS_id(1998);
 	// testgraph.BFS_all();
 	// testgraph.BFS_all();
 	// testgraph.BFS_id(118);
-	// testgraph.BFS_id(1998);
+	
 
 	cout<<"\n\n"<<endl;
 

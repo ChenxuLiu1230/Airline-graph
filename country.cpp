@@ -15,4 +15,3 @@ Country::Country(string country_name){
 }
 
 
-//Country(string country_name, string city_name);

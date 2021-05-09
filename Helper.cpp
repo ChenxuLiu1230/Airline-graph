@@ -16,24 +16,24 @@ using namespace std;
 
 
 vector <Country> make_country_list(){
-	ifstream fin("data/country.txt"); //open file
+	ifstream fin("data/country.txt"); // open file
 	string line; 
 	vector <Country> CL;
-	while (getline(fin, line))   //read entire line, 
+	while (getline(fin, line))   // read entire line, 
 	{
-		string temp = line; //current line of text read in .txt file
-		string delimiter ="\""; //text is seperated by " set delimiter
+		string temp = line; // current line of text read in .txt file
+		string delimiter ="\""; // text is seperated by " set delimiter
 		size_t pos = 0;
 		int counter= 0;
 		string country;
 		//find full name of the country in current line
 		while ((pos = temp.find(delimiter)) != string::npos) {
     			counter++;
-				if(counter%2 == 1) {//find first " and delete it
+				if(counter%2 == 1) { // find first " and delete it
 					temp.erase(0,pos+delimiter.length());
 					continue; 
 				}	
-				else if(counter%8 ==2){ //find second ", going to output found string
+				else if(counter%8 ==2){ // find second ", going to output found string
 					country = temp.substr(0, pos);
     				CL.push_back(Country(country));
     				temp.erase(0, pos + delimiter.length());
@@ -44,8 +44,8 @@ vector <Country> make_country_list(){
 
 }
 
-// Test case for make_country_list() 
-void test_country_list(vector <Country> l){
+
+void test_country_list(vector <Country> & l){
 	for (size_t i = 0; i<50; i++){
 		size_t temp = i+1;
 		cout<<"The "<<temp<<" country is "<<l[i].name<<endl;
@@ -54,9 +54,6 @@ void test_country_list(vector <Country> l){
 }
 
 
-//helper function to initialize airports
-/*
-*/
 vector <Airport> make_airport_list(){
 	ifstream fin("data/airports2.txt"); //open file
 	string line; 
@@ -168,6 +165,7 @@ vector <Airport> make_airport_list(){
 	return al;
 }
 
+
 //test case for make_airport_list()
 //instruction in is the input airport vector, 
 //n and m are the Unique ID of the airport, same as the line number in the txt file
@@ -176,6 +174,7 @@ void test_airport_list(vector <Airport> & in, int n){
 	cout<<"\nfirst input airport"<<endl;
 	cout<<in[n];
 }
+
 
 void read_routes(vector <Airport> &in){
 	ifstream fin("data/routes.txt"); //open file
@@ -246,6 +245,7 @@ void read_routes(vector <Airport> &in){
 
 }
 
+
 void test_read_routes(vector<Airport> & in, size_t n){
 	cout<<"\nstart of test_read_routs"<<endl;
 	vector <Airport*> temp,temp1;	
@@ -285,6 +285,7 @@ void test_read_routes(vector<Airport> & in, size_t n){
 	
 }
 
+
 // This implementation of havrrsine formula is referenced from https://www.movable-type.co.uk/scripts/latlong.html.
 double distance(Airport * first, Airport * second) {
     double const PI = atan(1) * 4;   // 3.1415926...
@@ -300,6 +301,7 @@ double distance(Airport * first, Airport * second) {
     return RADIUS * c;
 }
 
+
 bool check_overlap(vector <Airport> in, int a, int b){
 
 	vector <Airport*> temp = in[a].get_dd();
@@ -308,6 +310,7 @@ bool check_overlap(vector <Airport> in, int a, int b){
 	}
 	return true;
 }
+
 
 string check_overlap_2(vector <Airport> in, size_t n){
 	vector <Airport*> temp1 = in[n].get_dd();
@@ -321,6 +324,7 @@ string check_overlap_2(vector <Airport> in, size_t n){
 	}
 	return "all distinct routes";
 }
+
 
 int getIndex(vector<int> v, int K)
 {

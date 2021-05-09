@@ -37,6 +37,9 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
    $ ./test
    ```
  
+   After running the test cases, you should see the following output in the terminal:
+
+   ![Test Cases](tests/test.png)
 - *Note: When two parameters are needed, please separate them with a **space** or you can press **enter** to after your first input parameter.*
 - *Note: All of our algorithms are implemented in graph.cpp, while the functions that are used to read data are implemented in helper.cpp.*
 
