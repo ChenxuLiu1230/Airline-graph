@@ -14,6 +14,7 @@ Jibing Yao (jibingy2), Bo Jia (bojia2), Chenxu Liu (chenxul2), Shuchen Wu (sw18)
 2. ***Development log*** can be found in repository [Development Log](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Development%20Log)
 3. ***Final report*** can be found in repository [Final project report](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Final%20Project%20report)
 4. ***Presentation PPT and video*** can be found in repository [Final Project Presentation](https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/Final%20Project%20Presentation). To view our presentation video, please download the video and watch :)
+5. ***Data set*** can be found in repository [data]https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/tree/master/data.
 
 
 ## How to build and run our system?
