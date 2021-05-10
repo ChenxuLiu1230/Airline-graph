@@ -67,4 +67,6 @@ Chenxu Liu:
   
 #### Week5
 
-Complete the presentation video
+All team members:
+
+  Complete the presentation video. --May 9
