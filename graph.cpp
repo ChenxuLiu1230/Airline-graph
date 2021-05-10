@@ -207,7 +207,7 @@ void Graph::BFS_helper(int start, ofstream & fout, vector<bool>& globalvisited) 
     fout << "\n";
 }
 
-
+//the following are two helper struct that are used to implement Dijkastra 
 struct Node{
 	int x,y;
 	Node(int index, int distance):

@@ -228,7 +228,11 @@ class Airport {
         vector <double> get_inc_dis() const;
 
 
-
+        /**
+         * @brief get the distances(weights) between this airport and all of the other airports. 
+         * The value in distance[n] is -1 if there is no airline between this_,airport and nth airport
+         * @return the vector of distances.
+        **/  
         vector <double> get_distance() const;
         
 
@@ -266,8 +270,10 @@ class Airport {
         **/            
         void add_inc_dis(double in);
 
-
-
+        /**
+         * @brief helper function to change the value of the input index.
+         * @param : in, index.
+        **/  
         void add_distance(double in, int index);
 
         
@@ -303,7 +309,7 @@ class Airport {
         // Stores distance from current airport to incoming airports.
         vector<double> incoming_distance;
 
-        // Stores distance from this->airport to its destinations, index corresponds to their airportID
+        // Stores distance from this->airport to all the other airports, index corresponds to their airportID
         vector<double> distance; 
 
         

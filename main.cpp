@@ -19,15 +19,7 @@ int main()
 {	
 	cout<<"\n\n\n\n"<<"Initializing..."<<endl;
 	increase_stack_size();
-	// // test travese the airports array
-	// vector <Airport> airport_list = make_airport_list();	
-	// int start;
-    // for (int i = 0; i < (int) airport_list.size(); i++) {
-    //   if (airport_list[i].get_name() == "Melitopol Air Base") {
-    //     start = i;
-    //   }
-    // }
-	// cout << start << endl;
+
 	
 
 	Graph testgraph;

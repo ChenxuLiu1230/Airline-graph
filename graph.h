@@ -65,7 +65,11 @@ class Graph {
         vector<int> shortestPath(int source, int destination);
 
 
-
+        /**
+         * @brief check the valadity of the input index with respect to the airport list.
+         * @param : in, the index to test 
+         * @return true is input is valid, false otherwise.
+        **/  
         bool checkvalid(int in);
 
 
