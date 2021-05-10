@@ -36,6 +36,10 @@ Bo Jia:
     1. press 1, 2, 3, 4 to choose specific test type.
     2. in each test, receive the user input as the parameter.
     3. for each test, teach user how to continue and quit test. --April 22.
+
+Jibing Yao:
+
+  Implement shortest path implemented by Dijkstra algorithm.   --April 21.
   
 Shuchen Wu:
 
