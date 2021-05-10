@@ -70,3 +70,7 @@ Chenxu Liu:
 All team members:
 
   Complete the presentation video. --May 9
+  
+Shuchen Wu:
+  
+  Update comments. --May 9
