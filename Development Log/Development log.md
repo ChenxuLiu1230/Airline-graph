@@ -58,7 +58,7 @@ Bo Jia:
   
 Shuchen Wu：
 
-  Update Betweenness Centrality algorithm, comments, fianl report, and readme. --May 6
+  Update Betweenness Centrality algorithm, comments, final report, and readme. --May 6
 
 Chenxu Liu:
 
