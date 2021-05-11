@@ -7,51 +7,11 @@
 #include <cstdio>
 #include <sys/resource.h>
 #include <algorithm>
-#include "readFromFile.hpp"
-#include "country.h"
 #include "airport.h"
 #include <cmath>
 #include <algorithm>
 using namespace std;
 
-
-vector <Country> make_country_list(){
-	ifstream fin("data/country.txt"); // open file
-	string line; 
-	vector <Country> CL;
-	while (getline(fin, line))   // read entire line, 
-	{
-		string temp = line; // current line of text read in .txt file
-		string delimiter ="\""; // text is seperated by " set delimiter
-		size_t pos = 0;
-		int counter= 0;
-		string country;
-		//find full name of the country in current line
-		while ((pos = temp.find(delimiter)) != string::npos) {
-    			counter++;
-				if(counter%2 == 1) { // find first " and delete it
-					temp.erase(0,pos+delimiter.length());
-					continue; 
-				}	
-				else if(counter%8 ==2){ // find second ", going to output found string
-					country = temp.substr(0, pos);
-    				CL.push_back(Country(country));
-    				temp.erase(0, pos + delimiter.length());
-				} 				
-		}
-	}
-	return CL;
-
-}
-
-
-void test_country_list(vector <Country> & l){
-	for (size_t i = 0; i<50; i++){
-		size_t temp = i+1;
-		cout<<"The "<<temp<<" country is "<<l[i].name<<endl;
-	}
-	cout<<"total number of countries is "<<l.size()<<endl;
-}
 
 
 vector <Airport> make_airport_list(){

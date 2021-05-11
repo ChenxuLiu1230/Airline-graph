@@ -6,8 +6,6 @@
 #include <string>
 #include <cstdio>
 #include <sys/resource.h>
-#include "readFromFile.hpp"
-#include "country.h"
 #include "airport.h"
 #include "graph.h"
 #include "Helper.cpp" 

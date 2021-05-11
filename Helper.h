@@ -3,24 +3,8 @@
 
 
 #include <vector>
-#include "country.h"
 #include "airport.h"
 
-
-
-
-/**
- * @brief helper function to initialize Country List
- * @return the created list of countries
-**/
-vector <Country> make_country_list();
-
-
-/**
- * @brief test function that verify make_country_list(), check if the list is created successfully
- * @param l, the created list of country
-**/ 
-void test_country_list(vector <Country> & l);
 
 
 /**

@@ -6,15 +6,12 @@
 using namespace std;
 
 #include "../catch/catch.hpp"
-#include "../readFromFile.hpp"
 #include "../airport.h"
 #include "../graph.h"
 #include "../Helper.h"
-#include "../country.h"
 #include "../airport.cpp"
 #include "../graph.cpp"
 #include "../Helper.cpp"
-#include "../country.cpp"
 
 
 TEST_CASE("Test reading airports information into vector") {
