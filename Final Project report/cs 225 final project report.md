@@ -32,7 +32,7 @@ Firstly, users could see each valid airport's information and its destination an
 Example output of airports' information:
 
 <img src="https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/blob/master/output/airport_info.png" width="400" height="300"/>
-<img src="../output/airport_dest.png" width="500" height="350"/>
+<img src="../output/airport_dest.png" width="500" height="400"/>
 <img src="../output/airport_invalid.png" width="500" height="150"/>
  ![airport_dest](../output/airport_dest.png)
 
