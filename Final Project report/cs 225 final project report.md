@@ -31,8 +31,8 @@ Firstly, users could see each valid airport's information and its destination an
 
 Example output of airports' information:
 
- ![airport_info](../output/airport_info.png)
- <airport_info src="https://github-dev.cs.illinois.edu/cs225-sp21/jibingy2-bojia2-chenxul2-sw18/blob/master/output/airport_info.png" width="100" height="100">
+ ![airport_info](../output/airport_info.png =250x250)
+
 
  ![airport_dest](../output/airport_dest.png)
 
