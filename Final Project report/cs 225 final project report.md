@@ -57,7 +57,7 @@ Example output of shortest path:
 ![shortest_path1](../output/shortest_path1.png)
 
 ![shortest_path2](../output/shortest_path2.png)
-
+<img src="../output/shortest_path2.png" width="400" height="350"/>
 
 ##### Betweenness Centrality
 
